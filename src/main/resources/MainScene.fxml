@@ -1,24 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXMasonryPane?>
+<?import com.jfoenix.controls.JFXTextArea?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
-<?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="755.0" prefWidth="1082.0" xmlns="http://javafx.com/javafx/8.0.121"
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<BorderPane prefHeight="600.0" prefWidth="1000" xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1">
-    <children>
-        <TextArea fx:id="eventTextField" layoutX="482.0" layoutY="419.0" prefHeight="136.0" prefWidth="200.0"/>
-        <Label layoutX="482.0" layoutY="402.0" text="События"/>
-        <Button fx:id="testButton" layoutX="134.0" layoutY="94.0" mnemonicParsing="false" text="Привет"/>
+    <stylesheets>
+        <URL value="@base.css"/>
+    </stylesheets>
+    <left>
+        <JFXMasonryPane prefHeight="400.0" prefWidth="250.0">
+            <VBox styleClass="card">
+                <StackPane styleClass="header" VBox.vgrow="ALWAYS">
+                    <Label text="Параметры"/>
+                </StackPane>
+                <StackPane styleClass="body">
+                    <VBox spacing="10">
+                        <Label text="События"/>
+                        <JFXTextArea fx:id="eventTextField" layoutX="10.0" layoutY="10.0" prefHeight="136.0"
+                                     prefWidth="190.0"/>
+                        <JFXButton styleClass="action-button" fx:id="testButton" mnemonicParsing="false" text="Привет"/>
+                    </VBox>
+                </StackPane>
+            </VBox>
+        </JFXMasonryPane>
+    </left>
+    <center>
         <LineChart fx:id="lineChart">
             <xAxis>
-                <NumberAxis fx:id="xAxis" side="BOTTOM"/>
+                <NumberAxis side="BOTTOM" fx:id="xAxis"/>
             </xAxis>
             <yAxis>
                 <NumberAxis fx:id="yAxis" side="LEFT"/>
             </yAxis>
         </LineChart>
-    </children>
-</AnchorPane>
+    </center>
+</BorderPane>

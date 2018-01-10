@@ -1,0 +1,57 @@
+.glyph-icon {
+    -fx-font-family: "Material Design Icons";
+}
+
+.card {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
+}
+
+.card .body {
+    -fx-background-radius: 0 0 5px 5px;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-padding: 14.0px;
+}
+
+.card .header {
+    -fx-background-radius: 5 5 0 0;
+    -fx-background-color: mediumaquamarine;
+}
+
+.action-button {
+    -fx-background-color: lightblue;
+}
+
+.add-icon {
+    -glyph-name: "ADD_CIRCLE";
+    -fx-fill: green;
+}
+
+.remove-icon {
+    -glyph-name: "REMOVE_CIRCLE";
+    -fx-fill: red;
+}
+
+.upload_icon {
+    -glyph-name: "FILE_UPLOAD";
+    -fx-fill: black;
+    -fx-stroke-type: outside;
+    -fx-stroke-width: 0;
+}
+
+.bottom-keypad {
+    -fx-padding: 10.0px;
+}
+
+.jfx-text-field {
+    -jfx-label-float: true;
+}
+
+.jfx-combo-box {
+    -jfx-label-float: true;
+}
+
+.circle-button {
+    -fx-border-radius: 10;
+    -fx-background-color: white;
+    -fx-text-fill: WHITE;
+}

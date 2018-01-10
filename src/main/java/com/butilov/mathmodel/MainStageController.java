@@ -1,11 +1,11 @@
 package com.butilov.mathmodel;
 
+import com.jfoenix.controls.JFXButton;
+import com.jfoenix.controls.JFXTextArea;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
-import javafx.scene.control.Button;
-import javafx.scene.control.TextArea;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -52,9 +52,9 @@ public class MainStageController {
     }
 
     @FXML
-    private Button testButton;
+    private JFXButton testButton;
     @FXML
-    private TextArea eventTextField;
+    private JFXTextArea eventTextField;
     @FXML
     NumberAxis xAxis;
     @FXML
