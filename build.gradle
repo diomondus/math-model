@@ -18,7 +18,7 @@ repositories {
 dependencies {
     compile group: 'org.springframework', name: 'spring-core', version: '5.0.0.M5'
     compile group: 'org.springframework', name: 'spring-context', version: '5.0.0.M5'
-    compile group: 'org.springframework', name: 'spring-aop', version: '5.0.0.M5'
+
     compile 'com.jfoenix:jfoenix:1.9.0'
     compile 'de.jensd:fontawesomefx-materialicons:2.2.0-5'
 
