@@ -20,6 +20,12 @@ public class MathModelController {
     public void initialize() {
         initSliderControl(a1Slider, a1TextField, 0, 500);
         initSliderControl(a2Slider, a2TextField, 0, 500);
+        initSliderControl(N0Slider, N0TextField, 15000, 150000);
+        initSliderControl(NrSlider, NrTextField, 15000, 150000);
+        initSliderControl(P0Slider, P0TextField, 15000, 150000);
+        initSliderControl(PrSlider, PrTextField, 15000, 150000);
+        initSliderControl(TSlider, TTextField, 0, 500);
+        initSliderControl(NSlider, NTextField, 0, 500);
         initChartData();
     }
 
@@ -60,9 +66,33 @@ public class MathModelController {
     @FXML
     private JFXSlider a2Slider;
     @FXML
+    private JFXSlider N0Slider;
+    @FXML
+    private JFXSlider NrSlider;
+    @FXML
+    private JFXSlider P0Slider;
+    @FXML
+    private JFXSlider PrSlider;
+    @FXML
+    private JFXSlider TSlider;
+    @FXML
+    private JFXSlider NSlider;
+    @FXML
     private JFXTextField a1TextField;
     @FXML
     private JFXTextField a2TextField;
+    @FXML
+    private JFXTextField N0TextField;
+    @FXML
+    private JFXTextField NrTextField;
+    @FXML
+    private JFXTextField P0TextField;
+    @FXML
+    private JFXTextField PrTextField;
+    @FXML
+    private JFXTextField TTextField;
+    @FXML
+    private JFXTextField NTextField;
 
     @FXML
     private NumberAxis xAxis;
