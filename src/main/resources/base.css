@@ -12,6 +12,11 @@
     -fx-padding: 14.0px;
 }
 
+.card .slider {
+    -fx-background-color: white;
+    -fx-padding: 5.0px;
+}
+
 .card .header {
     -fx-background-radius: 5 5 0 0;
     -fx-background-color: mediumaquamarine;
@@ -21,14 +26,14 @@
     -fx-background-color: lightblue;
 }
 
-.add-icon {
-    -glyph-name: "ADD_CIRCLE";
-    -fx-fill: green;
+.tab-theory-icon {
+    -glyph-name: "INFO_OUTLINE";
+    -fx-fill: #464547;
 }
 
-.remove-icon {
-    -glyph-name: "REMOVE_CIRCLE";
-    -fx-fill: red;
+.tab-model-icon {
+    -glyph-name: "MULTILINE_CHART";
+    -fx-fill: #4fcd6d;
 }
 
 .upload_icon {

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -9,20 +10,22 @@
             xmlns:fx="http://javafx.com/fxml"
             prefHeight="600.0" prefWidth="600.0">
     <BorderPane prefHeight="600.0" prefWidth="1000">
-
         <stylesheets>
             <URL value="@base.css"/>
         </stylesheets>
         <center>
             <TabPane prefHeight="555.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
-                <Tab text="Теория">
-                    <!--<graphic>-->
-                    <!--<MaterialIconView glyphName="LINEAR_SCALE"/>-->
-                    <!--</graphic>-->
-                    <AnchorPane fx:id="theoryTab"/>
-                </Tab>
                 <Tab text="Модель">
+                    <graphic>
+                        <MaterialIconView size="2em" styleClass="tab-model-icon"/>
+                    </graphic>
                     <AnchorPane fx:id="modelTab"/>
+                </Tab>
+                <Tab text="Теория">
+                    <graphic>
+                        <MaterialIconView size="1.8em" styleClass="tab-theory-icon"/>
+                    </graphic>
+                    <AnchorPane fx:id="theoryTab"/>
                 </Tab>
             </TabPane>
         </center>

@@ -1,11 +1,13 @@
 package com.butilov.mathmodel.model;
 
-import com.jfoenix.controls.JFXButton;
-import com.jfoenix.controls.JFXTextArea;
+import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Slider;
+import javafx.scene.control.TextField;
 import org.springframework.stereotype.Component;
 
 /**
@@ -16,11 +18,19 @@ import org.springframework.stereotype.Component;
 public class MathModelController {
     @FXML
     public void initialize() {
-        testButton.setOnAction(e -> {
-            eventTextField.appendText("hello button pressed \n");
-        });
-
+        initSliderControl(a1Slider, a1TextField, 0, 500);
+        initSliderControl(a2Slider, a2TextField, 0, 500);
         initChartData();
+    }
+
+    private void initSliderControl(Slider slider, TextField textField, int minValue, int maxValue) {
+        slider.setMin(minValue);
+        slider.setValue(minValue);
+        slider.setMax(maxValue);
+        slider.setBlockIncrement(1);
+        slider.valueProperty()
+                .addListener((observable, old, newValew) -> textField.setText(String.valueOf(newValew.intValue())));
+        textField.setText(String.valueOf(minValue));
     }
 
     private void initChartData() {
@@ -46,13 +56,18 @@ public class MathModelController {
     }
 
     @FXML
-    private JFXButton testButton;
+    private JFXSlider a1Slider;
     @FXML
-    private JFXTextArea eventTextField;
+    private JFXSlider a2Slider;
     @FXML
-    NumberAxis xAxis;
+    private JFXTextField a1TextField;
     @FXML
-    NumberAxis yAxis;
+    private JFXTextField a2TextField;
+
+    @FXML
+    private NumberAxis xAxis;
+    @FXML
+    private NumberAxis yAxis;
     @FXML
     LineChart<Number, Number> lineChart;
 }
