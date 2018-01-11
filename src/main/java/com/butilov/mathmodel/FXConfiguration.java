@@ -1,8 +1,10 @@
 package com.butilov.mathmodel;
 
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -20,7 +22,7 @@ import java.util.Properties;
 public class FXConfiguration
 {
     @Bean
-    public Scene getMainScene(MainStageController aMainStageController)
+    public Scene getMainScene(MainStageController aMainStageController) // todo сделать по @Qualifier
             throws IOException
     {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MainScene.fxml"));
@@ -34,6 +36,15 @@ public class FXConfiguration
         fxmlLoader.setController(aMainStageController);
         Parent root = fxmlLoader.load();
         return new Scene(root);
+    }
+
+    @Bean
+    @Qualifier("modelPane")
+    public Node modelPane()
+            throws IOException
+    {
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/model/Model.fxml"));
+        return fxLoader.load();
     }
 }
 

@@ -3,6 +3,7 @@ package com.butilov.mathmodel;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Import;
 
 /**
  * Created by Dmitry Butilov
@@ -10,6 +11,7 @@ import org.springframework.context.annotation.Configuration;
  */
 @Configuration
 @ComponentScan("com.butilov.mathmodel")
+@Import(FXConfiguration.class) // todo почему работает без этой строки?
 public class SpringConfiguration
 {
     @Bean
