@@ -18,47 +18,83 @@ import org.springframework.stereotype.Component;
 public class MathModelController {
     @FXML
     public void initialize() {
-        initSliderControl(a1Slider, a1TextField, 0, 500);
-        initSliderControl(a2Slider, a2TextField, 0, 500);
-        initSliderControl(N0Slider, N0TextField, 15000, 150000);
-        initSliderControl(NrSlider, NrTextField, 15000, 150000);
-        initSliderControl(P0Slider, P0TextField, 15000, 150000);
-        initSliderControl(PrSlider, PrTextField, 15000, 150000);
-        initSliderControl(TSlider, TTextField, 0, 500);
-        initSliderControl(NSlider, NTextField, 0, 500);
+        initSliderControl(a1Slider, a1TextField, 2, 500);
+        initSliderControl(a2Slider, a2TextField, 2, 500);
+        initSliderControl(N0Slider, N0TextField, 30000, 150000);
+        initSliderControl(NrSlider, NrTextField, 20000, 150000);
+        initSliderControl(P0Slider, P0TextField, 50000, 150000);
+        initSliderControl(PrSlider, PrTextField, 40000, 150000);
+        initSliderControl(TSlider, TTextField, 20, 500);
+        initSliderControl(NSlider, NTextField, 200, 500);
+
         initChartData();
     }
 
-    private void initSliderControl(Slider slider, TextField textField, int minValue, int maxValue) {
-        slider.setMin(minValue);
-        slider.setValue(minValue);
+    private void initSliderControl(Slider slider, TextField textField, int defaultValue, int maxValue) {
+        textField.setText(String.valueOf(defaultValue));
+        slider.setMin(0);
+        slider.setValue(defaultValue);
         slider.setMax(maxValue);
         slider.setBlockIncrement(1);
-        slider.valueProperty()
-                .addListener((observable, old, newValew) -> textField.setText(String.valueOf(newValew.intValue())));
-        textField.setText(String.valueOf(minValue));
+        // todo попробовать прикрутить bind  textField.textProperty().bind(Bindings.convert(slider.valueProperty()));
+        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            textField.setText(String.valueOf(newValue.intValue()));
+            initChartData();
+        });
+        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+            int value = Double.valueOf(newValue).intValue();
+            if (value >= 0 && value <= maxValue) {
+                slider.setValue(value);
+                initChartData();
+            } else {
+                textField.textProperty().setValue(oldValue);
+            }
+        });
     }
 
     private void initChartData() {
-        xAxis.setLabel("Number of Month");
-        lineChart.setTitle("Stock Monitoring, 2018");
-        //defining a series
-        XYChart.Series series = new XYChart.Series();
-        series.setName("My portfolio");
-        //populating the series with data
-        series.getData().add(new XYChart.Data(1, 23));
-        series.getData().add(new XYChart.Data(2, 14));
-        series.getData().add(new XYChart.Data(3, 15));
-        series.getData().add(new XYChart.Data(4, 24));
-        series.getData().add(new XYChart.Data(5, 34));
-        series.getData().add(new XYChart.Data(6, 36));
-        series.getData().add(new XYChart.Data(7, 22));
-        series.getData().add(new XYChart.Data(8, 45));
-        series.getData().add(new XYChart.Data(9, 43));
-        series.getData().add(new XYChart.Data(10, 17));
-        series.getData().add(new XYChart.Data(11, 29));
-        series.getData().add(new XYChart.Data(12, 25));
-        lineChart.getData().add(series);
+        lineChart.setTitle("Модель зависимости зарплат и занятости");
+        xAxis.setLabel("Занятость");
+        yAxis.setLabel("Зарплата");
+        lineChart.getData().clear();
+        lineChart.getData()
+                .add(executeChartSeries(
+                        getDoubleValueFromTF(a1TextField),
+                        getDoubleValueFromTF(a2TextField),
+                        getDoubleValueFromTF(N0TextField),
+                        getDoubleValueFromTF(NrTextField),
+                        getDoubleValueFromTF(P0TextField),
+                        getDoubleValueFromTF(PrTextField),
+                        getDoubleValueFromTF(TTextField),
+                        getDoubleValueFromTF(NTextField)
+                ));
+    }
+
+    private Double getDoubleValueFromTF(TextField aTextField) {
+        String value = aTextField.textProperty().getValue();
+        return value.isEmpty() ? 0 : Double.valueOf(value);
+    }
+
+    // todo перенести метод
+    private XYChart.Series<Double, Double> executeChartSeries(double a1, double a2, double n0, double nr, double p0, double pr, double T, double N) {
+        XYChart.Series<Double, Double> series = new XYChart.Series<>();
+        series.getData().add(new XYChart.Data<>(n0, p0));
+        double h = T / N;
+        double b = Math.sqrt(a1);
+        double c = Math.sqrt(a2);
+        double a = b * c;
+        for (int i = 1; i < N; i++) {
+            double t = i * h;
+            double p = (Math.sin(a * t) * c * (nr - n0)) / b;
+            p = p + Math.cos(a * t) * (-pr + p0) + pr;
+
+            double n = Math.sin(a * t) * b * (p0 - pr) + nr * c;
+            n = n - Math.cos(a * t) * c * (nr - n0);
+            n = n / b;
+
+            series.getData().add(new XYChart.Data<>(n, p));
+        }
+        return series;
     }
 
     @FXML
@@ -99,5 +135,6 @@ public class MathModelController {
     @FXML
     private NumberAxis yAxis;
     @FXML
-    LineChart<Number, Number> lineChart;
+    LineChart<Double, Double> lineChart;
+//   todo ScatterChart
 }
