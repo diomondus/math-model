@@ -21,13 +21,21 @@ public class MainStageController {
 
     @Autowired
     @Qualifier("modelPane")
-    void setNodePane(Node modelPane) {
+    void setModelPane(Node modelPane) {
         mModelPane = modelPane;
+    }
+
+
+    @Autowired
+    @Qualifier("theoryPane")
+    void setTheoryPane(Node theoryPane) {
+        mTheoryPane = theoryPane;
     }
 
     @FXML
     public void initialize() {
         modelTab.getChildren().add(mModelPane);
+        theoryTab.getChildren().add(mTheoryPane);
     }
 
     public void onApplicationExit() {
@@ -36,8 +44,11 @@ public class MainStageController {
 
     @FXML
     private AnchorPane modelTab;
+    @FXML
+    private AnchorPane theoryTab;
 
     private Node mModelPane;
+    private Node mTheoryPane;
 
     private FXTestBean mFXTestBean;
 }

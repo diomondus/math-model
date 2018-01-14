@@ -46,5 +46,14 @@ public class FXConfiguration
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/model/Model.fxml"));
         return fxLoader.load();
     }
+
+    @Bean
+    @Qualifier("theoryPane")
+    public Node theoryPane()
+            throws IOException
+    {
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/theory/Theory.fxml"));
+        return fxLoader.load();
+    }
 }
 
