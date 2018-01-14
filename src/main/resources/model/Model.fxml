@@ -3,12 +3,13 @@
 <?import com.jfoenix.controls.*?>
 <?import com.jfoenix.validation.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.chart.*?>
+<?import javafx.scene.chart.LineChart?>
+<?import javafx.scene.chart.NumberAxis?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.butilov.mathmodel.model.MathModelController">
+            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.butilov.mathmodel.controllers.MathModelController">
     <BorderPane prefHeight="600.0" prefWidth="1000.0">
         <stylesheets>
             <URL value="@../base.css"/>

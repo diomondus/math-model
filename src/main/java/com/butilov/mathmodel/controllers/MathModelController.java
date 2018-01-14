@@ -1,9 +1,8 @@
-package com.butilov.mathmodel.model;
+package com.butilov.mathmodel.controllers;
 
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
-import javafx.scene.chart.LineChart;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Slider;
@@ -18,21 +17,21 @@ import org.springframework.stereotype.Component;
 public class MathModelController {
     @FXML
     public void initialize() {
-        initSliderControl(a1Slider, a1TextField, 2, 500);
-        initSliderControl(a2Slider, a2TextField, 2, 500);
-        initSliderControl(N0Slider, N0TextField, 30000, 150000);
-        initSliderControl(NrSlider, NrTextField, 20000, 150000);
-        initSliderControl(P0Slider, P0TextField, 50000, 150000);
-        initSliderControl(PrSlider, PrTextField, 40000, 150000);
-        initSliderControl(TSlider, TTextField, 20, 500);
-        initSliderControl(NSlider, NTextField, 200, 500);
+        initSliderControl(a1Slider, a1TextField, 2, 0, 500);
+        initSliderControl(a2Slider, a2TextField, 2, 0, 500);
+        initSliderControl(N0Slider, N0TextField, 30000, 15000, 150000);
+        initSliderControl(NrSlider, NrTextField, 20000, 15000, 150000);
+        initSliderControl(P0Slider, P0TextField, 50000, 15000, 150000);
+        initSliderControl(PrSlider, PrTextField, 40000, 15000, 150000);
+        initSliderControl(TSlider, TTextField, 20, 0, 500);
+        initSliderControl(NSlider, NTextField, 200, 0, 500);
 
         initChartData();
     }
 
-    private void initSliderControl(Slider slider, TextField textField, int defaultValue, int maxValue) {
+    private void initSliderControl(Slider slider, TextField textField, int defaultValue, int minValue, int maxValue) {
         textField.setText(String.valueOf(defaultValue));
-        slider.setMin(0);
+        slider.setMin(minValue);
         slider.setValue(defaultValue);
         slider.setMax(maxValue);
         slider.setBlockIncrement(1);
@@ -42,10 +41,9 @@ public class MathModelController {
             initChartData();
         });
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
-            int value = Double.valueOf(newValue).intValue();
+            int value = newValue.isEmpty() ? 0 : Double.valueOf(newValue).intValue();
             if (value >= 0 && value <= maxValue) {
                 slider.setValue(value);
-                initChartData();
             } else {
                 textField.textProperty().setValue(oldValue);
             }
@@ -54,20 +52,19 @@ public class MathModelController {
 
     private void initChartData() {
         lineChart.setTitle("Модель зависимости зарплат и занятости");
-        xAxis.setLabel("Занятость");
-        yAxis.setLabel("Зарплата");
+        xAxis.setLabel("Время");
+        yAxis.setLabel("Величина зарплаты/занятости");
         lineChart.getData().clear();
-        lineChart.getData()
-                .add(executeChartSeries(
-                        getDoubleValueFromTF(a1TextField),
-                        getDoubleValueFromTF(a2TextField),
-                        getDoubleValueFromTF(N0TextField),
-                        getDoubleValueFromTF(NrTextField),
-                        getDoubleValueFromTF(P0TextField),
-                        getDoubleValueFromTF(PrTextField),
-                        getDoubleValueFromTF(TTextField),
-                        getDoubleValueFromTF(NTextField)
-                ));
+        executeChartSeries(
+                getDoubleValueFromTF(a1TextField),
+                getDoubleValueFromTF(a2TextField),
+                getDoubleValueFromTF(N0TextField),
+                getDoubleValueFromTF(NrTextField),
+                getDoubleValueFromTF(P0TextField),
+                getDoubleValueFromTF(PrTextField),
+                getDoubleValueFromTF(TTextField),
+                getDoubleValueFromTF(NTextField)
+        );
     }
 
     private Double getDoubleValueFromTF(TextField aTextField) {
@@ -76,14 +73,18 @@ public class MathModelController {
     }
 
     // todo перенести метод
-    private XYChart.Series<Double, Double> executeChartSeries(double a1, double a2, double n0, double nr, double p0, double pr, double T, double N) {
+    private void executeChartSeries(double a1, double a2, double n0, double nr, double p0, double pr, double T, double N) {
         XYChart.Series<Double, Double> series = new XYChart.Series<>();
-        series.getData().add(new XYChart.Data<>(n0, p0));
-        double h = T / N;
+        XYChart.Series<Double, Double> series1 = new XYChart.Series<>();
+        int shift = 1;
+        if (a1 == 0) {
+            a1 = 0.01; // костыль!
+        }
+        double h = T / N / shift;
         double b = Math.sqrt(a1);
         double c = Math.sqrt(a2);
         double a = b * c;
-        for (int i = 1; i < N; i++) {
+        for (int i = 1; i < N * shift; i++) {
             double t = i * h;
             double p = (Math.sin(a * t) * c * (nr - n0)) / b;
             p = p + Math.cos(a * t) * (-pr + p0) + pr;
@@ -92,9 +93,13 @@ public class MathModelController {
             n = n - Math.cos(a * t) * c * (nr - n0);
             n = n / b;
 
-            series.getData().add(new XYChart.Data<>(n, p));
+            series.getData().add(new XYChart.Data<>(t, n));
+            series1.getData().add(new XYChart.Data<>(t, p));
         }
-        return series;
+        series.setName("Размер зарплаты");
+        series1.setName("Количество занятых");
+        lineChart.getData().add(series);
+        lineChart.getData().add(series1);
     }
 
     @FXML
@@ -135,6 +140,5 @@ public class MathModelController {
     @FXML
     private NumberAxis yAxis;
     @FXML
-    LineChart<Double, Double> lineChart;
-//   todo ScatterChart
+    XYChart<Double, Double> lineChart;
 }
