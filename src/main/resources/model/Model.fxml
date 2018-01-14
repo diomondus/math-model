@@ -3,8 +3,7 @@
 <?import com.jfoenix.controls.*?>
 <?import com.jfoenix.validation.*?>
 <?import javafx.geometry.*?>
-<?import javafx.scene.chart.LineChart?>
-<?import javafx.scene.chart.NumberAxis?>
+<?import javafx.scene.chart.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
@@ -15,7 +14,7 @@
             <URL value="@../base.css"/>
         </stylesheets>
         <left>
-            <JFXMasonryPane prefHeight="150.0" prefWidth="300.0">
+            <JFXMasonryPane prefHeight="150.0" prefWidth="250.0">
                 <VBox styleClass="card">
                     <StackPane styleClass="header" VBox.vgrow="NEVER">
                         <Label text="Параметры"/>
@@ -187,14 +186,16 @@
             </JFXMasonryPane>
         </left>
         <center>
-            <LineChart fx:id="lineChart">
-                <xAxis>
-                    <NumberAxis side="BOTTOM" fx:id="xAxis"/>
-                </xAxis>
-                <yAxis>
-                    <NumberAxis fx:id="yAxis" side="LEFT"/>
-                </yAxis>
-            </LineChart>
+            <StackPane>
+                <LineChart fx:id="lineChart">
+                    <xAxis>
+                        <NumberAxis side="BOTTOM" fx:id="xAxis"/>
+                    </xAxis>
+                    <yAxis>
+                        <NumberAxis side="LEFT" fx:id="yAxis"/>
+                    </yAxis>
+                </LineChart>
+            </StackPane>
         </center>
     </BorderPane>
 </AnchorPane>

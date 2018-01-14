@@ -8,13 +8,13 @@
 <?import java.net.URL?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            prefHeight="600.0" prefWidth="600.0">
-    <BorderPane prefHeight="600.0" prefWidth="1000">
+            prefHeight="650.0" prefWidth="600.0">
+    <BorderPane prefHeight="650.0" prefWidth="1000">
         <stylesheets>
             <URL value="@base.css"/>
         </stylesheets>
         <center>
-            <TabPane prefHeight="555.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
+            <TabPane prefHeight="585.0" prefWidth="1000.0" tabClosingPolicy="UNAVAILABLE">
                 <Tab text="Модель">
                     <graphic>
                         <MaterialIconView size="2em" styleClass="tab-model-icon"/>
