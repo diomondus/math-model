@@ -1,4 +1,4 @@
-package com.butilov.mathmodel.controllers;
+package com.butilov.mathmodel.model;
 
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
