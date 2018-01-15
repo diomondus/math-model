@@ -7,6 +7,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import org.springframework.stereotype.Component;
 
 /**
@@ -25,6 +26,15 @@ public class MathModelController {
         initSliderControl(PrSlider, PrTextField, 40000, 15000, 150000);
         initSliderControl(TSlider, TTextField, 20, 0, 500);
         initSliderControl(NSlider, NTextField, 200, 0, 500);
+
+        a1TextField.setTooltip(new Tooltip("Коэффициент изменения зарплаты"));
+        a2TextField.setTooltip(new Tooltip("Коэффициент изменения занятых"));
+        P0TextField.setTooltip(new Tooltip("Значение зарплаты в начале исследования"));
+        N0TextField.setTooltip(new Tooltip("Значение числа занятых мест в начале исследования"));
+        TTextField.setTooltip(new Tooltip("Время наблюдения за реакцией"));
+        NTextField.setTooltip(new Tooltip("Количество узлов сетки"));
+        NrTextField.setTooltip(new Tooltip("Значение числа занятых мест в начале исследования (равновесие)"));
+        PrTextField.setTooltip(new Tooltip("Значение зарплаты в начале исследования (равновесие)"));
 
         initChartData();
     }
