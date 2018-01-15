@@ -18,11 +18,11 @@
             <JFXMasonryPane prefHeight="150.0" prefWidth="250.0">
                 <VBox styleClass="card">
                     <StackPane styleClass="header" VBox.vgrow="NEVER">
-                        <Label text="Параметры"/>
+                        <Label fx:id="headerLabel" text="Параметры"/>
                     </StackPane>
                     <VBox styleClass="body">
                         <HBox>
-                            <Label alignment="CENTER" text="a1 = ">
+                            <Label fx:id="a1Label" alignment="CENTER" text="a1 = ">
                                 <HBox.margin>
                                     <Insets top="4.0"/>
                                 </HBox.margin>
@@ -42,7 +42,7 @@
                             </JFXSlider>
                         </StackPane>
                         <HBox>
-                            <Label alignment="CENTER" text="a2 = ">
+                            <Label fx:id="a2Label" alignment="CENTER" text="a2 = ">
                                 <HBox.margin>
                                     <Insets top="4.0"/>
                                 </HBox.margin>
@@ -62,7 +62,7 @@
                             </JFXSlider>
                         </StackPane>
                         <HBox>
-                            <Label alignment="CENTER" text="N0 = ">
+                            <Label fx:id="N0Label" alignment="CENTER" text="N0 = ">
                                 <HBox.margin>
                                     <Insets top="4.0"/>
                                 </HBox.margin>
@@ -82,7 +82,7 @@
                             </JFXSlider>
                         </StackPane>
                         <HBox>
-                            <Label alignment="CENTER" text="Nr = ">
+                            <Label fx:id="NrLabel" alignment="CENTER" text="Nr = ">
                                 <HBox.margin>
                                     <Insets top="4.0"/>
                                 </HBox.margin>
@@ -102,7 +102,7 @@
                             </JFXSlider>
                         </StackPane>
                         <HBox>
-                            <Label alignment="CENTER" text="P0 = ">
+                            <Label fx:id="P0Label" alignment="CENTER" text="P0 = ">
                                 <HBox.margin>
                                     <Insets top="4.0"/>
                                 </HBox.margin>
@@ -122,7 +122,7 @@
                             </JFXSlider>
                         </StackPane>
                         <HBox>
-                            <Label alignment="CENTER" text="Pr = ">
+                            <Label fx:id="PrLabel" alignment="CENTER" text="Pr = ">
                                 <HBox.margin>
                                     <Insets top="4.0"/>
                                 </HBox.margin>
@@ -142,7 +142,7 @@
                             </JFXSlider>
                         </StackPane>
                         <HBox>
-                            <Label alignment="CENTER" text="T = ">
+                            <Label fx:id="TLabel" alignment="CENTER" text="T = ">
                                 <HBox.margin>
                                     <Insets top="4.0"/>
                                 </HBox.margin>
@@ -162,7 +162,7 @@
                             </JFXSlider>
                         </StackPane>
                         <HBox>
-                            <Label alignment="CENTER" text="N = ">
+                            <Label fx:id="NLabel" alignment="CENTER" text="N = ">
                                 <HBox.margin>
                                     <Insets top="4.0"/>
                                 </HBox.margin>

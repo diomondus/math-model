@@ -5,6 +5,7 @@ import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
+import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
@@ -18,6 +19,29 @@ import org.springframework.stereotype.Component;
 public class MathModelController {
     @FXML
     public void initialize() {
+        initSliders();
+        initTooltips();
+        initChartData();
+    }
+
+    private void initTooltips() {
+        initTooltip(a1TextField, a1Label, "Коэффициент изменения зарплаты");
+        initTooltip(a2TextField, a2Label, "Коэффициент изменения занятых");
+        initTooltip(P0TextField, P0Label, "Значение зарплаты в начале исследования");
+        initTooltip(N0TextField, N0Label, "Значение числа занятых мест в начале исследования");
+        initTooltip(PrTextField, PrLabel, "Значение зарплаты в начале исследования (равновесие)");
+        initTooltip(NrTextField, NrLabel, "Значение числа занятых мест в начале исследования (равновесие)");
+        initTooltip(TTextField, TLabel, "Время наблюдения за реакцией");
+        initTooltip(NTextField, NLabel, "Количество узлов сетки");
+    }
+
+    private void initTooltip(TextField textField, Label label, String tooltipString) {
+        Tooltip tooltip = new Tooltip(tooltipString);
+        textField.setTooltip(tooltip);
+        label.setTooltip(tooltip);
+    }
+
+    private void initSliders() {
         initSliderControl(a1Slider, a1TextField, 2, 0, 500);
         initSliderControl(a2Slider, a2TextField, 2, 0, 500);
         initSliderControl(N0Slider, N0TextField, 30000, 15000, 150000);
@@ -26,17 +50,6 @@ public class MathModelController {
         initSliderControl(PrSlider, PrTextField, 40000, 15000, 150000);
         initSliderControl(TSlider, TTextField, 20, 0, 500);
         initSliderControl(NSlider, NTextField, 200, 0, 500);
-
-        a1TextField.setTooltip(new Tooltip("Коэффициент изменения зарплаты"));
-        a2TextField.setTooltip(new Tooltip("Коэффициент изменения занятых"));
-        P0TextField.setTooltip(new Tooltip("Значение зарплаты в начале исследования"));
-        N0TextField.setTooltip(new Tooltip("Значение числа занятых мест в начале исследования"));
-        TTextField.setTooltip(new Tooltip("Время наблюдения за реакцией"));
-        NTextField.setTooltip(new Tooltip("Количество узлов сетки"));
-        NrTextField.setTooltip(new Tooltip("Значение числа занятых мест в начале исследования (равновесие)"));
-        PrTextField.setTooltip(new Tooltip("Значение зарплаты в начале исследования (равновесие)"));
-
-        initChartData();
     }
 
     private void initSliderControl(Slider slider, TextField textField, int defaultValue, int minValue, int maxValue) {
@@ -111,6 +124,25 @@ public class MathModelController {
         lineChart.getData().add(series);
         lineChart.getData().add(series1);
     }
+
+    @FXML
+    private Label headerLabel;
+    @FXML
+    private Label a1Label;
+    @FXML
+    private Label a2Label;
+    @FXML
+    private Label P0Label;
+    @FXML
+    private Label N0Label;
+    @FXML
+    private Label PrLabel;
+    @FXML
+    private Label NrLabel;
+    @FXML
+    private Label TLabel;
+    @FXML
+    private Label NLabel;
 
     @FXML
     private JFXSlider a1Slider;
