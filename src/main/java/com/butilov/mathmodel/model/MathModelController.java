@@ -96,8 +96,8 @@ public class MathModelController {
             series.getData().add(new XYChart.Data<>(t, n));
             series1.getData().add(new XYChart.Data<>(t, p));
         }
-        series.setName("Размер зарплаты");
-        series1.setName("Количество занятых");
+        series.setName("Количество занятых");
+        series1.setName("Размер зарплаты");
         lineChart.getData().add(series);
         lineChart.getData().add(series1);
     }
