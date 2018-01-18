@@ -1,5 +1,6 @@
 package com.butilov.mathmodel.model;
 
+import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
@@ -23,8 +24,26 @@ public class MathModelController {
     @FXML
     public void initialize() {
         initSliders();
+        initButtonActions();
         initTooltips();
         initChartData();
+    }
+
+    private void initButtonActions() {
+        exampleButton1.setOnAction(e -> {
+            P0TextField.textProperty().setValue("50000");
+            N0TextField.textProperty().setValue("20000");
+            PrTextField.textProperty().setValue("50000");
+            NrTextField.textProperty().setValue("20000");
+            initChartData();
+        });
+        exampleButton2.setOnAction(e -> {
+            P0TextField.textProperty().setValue("50000");
+            N0TextField.textProperty().setValue("20000");
+            PrTextField.textProperty().setValue("40000");
+            NrTextField.textProperty().setValue("20000");
+            initChartData();
+        });
     }
 
     private void initTooltips() {
@@ -58,8 +77,8 @@ public class MathModelController {
     private void initSliderControl(Slider slider, TextField textField, int defaultValue, int minValue, int maxValue) {
         textField.setText(String.valueOf(defaultValue));
         slider.setMin(minValue);
-        slider.setValue(defaultValue);
         slider.setMax(maxValue);
+        slider.setValue(defaultValue);
         // todo попробовать прикрутить bind  textField.textProperty().bind(Bindings.convert(slider.valueProperty()));
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             textField.setText(String.valueOf(newValue.intValue()));
@@ -141,6 +160,11 @@ public class MathModelController {
         lineChart.getData().add(pData);
         lineChart.getData().add(nData);
     }
+
+    @FXML
+    private JFXButton exampleButton1;
+    @FXML
+    private JFXButton exampleButton2;
 
     @FXML
     private Label headerLabel;

@@ -181,12 +181,16 @@
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
-                        <JFXButton styleClass="action-button" text="Равновесие">
+                        <JFXButton fx:id="exampleButton1" styleClass="action-button" text="Равновесие">
                             <VBox.margin>
-                                <Insets bottom="10.0"/>
+                                <Insets top="10.0" bottom="5.0"/>
                             </VBox.margin>
                         </JFXButton>
-                        <JFXButton styleClass="action-button" text="Зарплата слишком высокая"/>
+                        <JFXButton fx:id="exampleButton2" styleClass="action-button" text="Зарплата слишком высокая">
+                            <VBox.margin>
+                                <Insets top="10.0"/>
+                            </VBox.margin>
+                        </JFXButton>
                     </VBox>
 
                 </VBox>
