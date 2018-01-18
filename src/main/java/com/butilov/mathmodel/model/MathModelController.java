@@ -68,14 +68,23 @@ public class MathModelController {
 
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             int value = newValue.isEmpty() ? 0 : Double.valueOf(newValue).intValue();
-            if (value >= 0 && value <= maxValue) {
+            if (value >= minValue && value <= maxValue) {
                 slider.setValue(value);
-            } else {
-                textField.textProperty().setValue(oldValue);
             }
         });
         textField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
+                final String stringValue = textField.textProperty().getValue();
+                int value = stringValue.isEmpty() ? 0 : Double.valueOf(stringValue).intValue();
+                if (value >= minValue && value <= maxValue) {
+                    slider.setValue(value);
+                } else if (value < minValue) {
+                    slider.setValue(minValue);
+                    textField.textProperty().setValue(String.valueOf(minValue));
+                } else {
+                    slider.setValue(maxValue);
+                    textField.textProperty().setValue(String.valueOf(maxValue));
+                }
                 initChartData();
             }
         });
@@ -84,7 +93,7 @@ public class MathModelController {
     private void initChartData() {
         lineChart.setTitle("Модель зависимости зарплат и занятости");
         xAxis.setLabel("Время, t");
-        yAxis.setLabel("Величина занятости, N и зарплаты, P");
+        yAxis.setLabel("Занятость, N   и   зарплата, P");
         lineChart.getData().clear();
         executeChartSeries(
                 getDoubleValueFromTF(a1TextField),
