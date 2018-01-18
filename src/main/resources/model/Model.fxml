@@ -193,7 +193,7 @@
             <StackPane prefHeight="650.0" prefWidth="750.0">
                 <LineChart fx:id="lineChart">
                     <xAxis>
-                        <NumberAxis side="BOTTOM" fx:id="xAxis"/>
+                        <NumberAxis fx:id="xAxis" side="BOTTOM" />
                     </xAxis>
                     <yAxis>
                         <NumberAxis fx:id="yAxis" side="LEFT"/>
