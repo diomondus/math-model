@@ -61,3 +61,23 @@
     -fx-background-color: white;
     -fx-text-fill: WHITE;
 }
+
+.chart {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
+    -fx-background-radius: 0 0 5px 5px;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-padding: 14.0px;
+}
+
+/*.chart-series-line {*/
+    /*-fx-stroke-width: 2px;*/
+    /*-fx-effect: null;*/
+/*}*/
+
+/*.default-color0.chart-series-line {*/
+    /*-fx-stroke: #e9967a;*/
+/*}*/
+
+/*.default-color1.chart-series-line {*/
+    /*-fx-stroke: #f0e68c;*/
+/*}*/
