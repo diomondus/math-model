@@ -97,8 +97,8 @@ public class MathModelController {
 
     // todo перенести метод
     private void executeChartSeries(double a1, double a2, double n0, double nr, double p0, double pr, double T, double N) {
-        XYChart.Series<Double, Double> series = new XYChart.Series<>();
-        XYChart.Series<Double, Double> series1 = new XYChart.Series<>();
+        XYChart.Series<Double, Double> nData = new XYChart.Series<>();
+        XYChart.Series<Double, Double> pData = new XYChart.Series<>();
         int shift = 1;
         if (a1 == 0) {
             a1 = 0.01; // костыль!
@@ -116,13 +116,13 @@ public class MathModelController {
             n = n - Math.cos(a * t) * c * (nr - n0);
             n = n / b;
 
-            series.getData().add(new XYChart.Data<>(t, n));
-            series1.getData().add(new XYChart.Data<>(t, p));
+            nData.getData().add(new XYChart.Data<>(t, n));
+            pData.getData().add(new XYChart.Data<>(t, p));
         }
-        series.setName("Количество занятых");
-        series1.setName("Размер зарплаты");
-        lineChart.getData().add(series);
-        lineChart.getData().add(series1);
+        pData.setName("Размер зарплаты");
+        nData.setName("Количество занятых");
+        lineChart.getData().add(pData);
+        lineChart.getData().add(nData);
     }
 
     @FXML
