@@ -1,183 +1,181 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.jfoenix.controls.*?>
-<?import com.jfoenix.validation.*?>
-<?import javafx.geometry.*?>
+<?import com.jfoenix.controls.JFXMasonryPane?>
+<?import com.jfoenix.controls.JFXSlider?>
+<?import com.jfoenix.controls.JFXTextField?>
+<?import com.jfoenix.validation.NumberValidator?>
+<?import java.net.URL?>
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.chart.LineChart?>
 <?import javafx.scene.chart.NumberAxis?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
-<?import java.net.URL?>
-<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.butilov.mathmodel.model.MathModelController">
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.butilov.mathmodel.model.MathModelController">
     <BorderPane prefHeight="600.0" prefWidth="1000.0">
         <stylesheets>
-            <URL value="@../base.css"/>
+            <URL value="@../base.css" />
         </stylesheets>
         <left>
             <JFXMasonryPane prefHeight="150.0" prefWidth="250.0">
                 <VBox styleClass="card">
                     <StackPane styleClass="header" VBox.vgrow="NEVER">
-                        <Label fx:id="headerLabel" text="Параметры"/>
+                        <Label fx:id="headerLabel" text="Параметры" />
                     </StackPane>
                     <VBox styleClass="body">
                         <HBox>
                             <Label fx:id="a1Label" alignment="CENTER" text="a1 = ">
                                 <HBox.margin>
-                                    <Insets top="4.0"/>
+                                    <Insets top="4.0" />
                                 </HBox.margin>
                             </Label>
                             <JFXTextField fx:id="a1TextField">
                                 <validators>
-                                    <NumberValidator/>
+                                    <NumberValidator />
                                 </validators>
                             </JFXTextField>
                         </HBox>
                         <StackPane styleClass="slider">
-                            <JFXSlider fx:id="a1Slider" maxWidth="150.0" minWidth="150.0"
-                                       nodeOrientation="LEFT_TO_RIGHT">
+                            <JFXSlider fx:id="a1Slider" maxWidth="150.0" minWidth="150.0" nodeOrientation="LEFT_TO_RIGHT">
                                 <StackPane.margin>
-                                    <Insets bottom="5.0" left="40.0"/>
+                                    <Insets bottom="5.0" left="40.0" />
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
                         <HBox>
                             <Label fx:id="a2Label" alignment="CENTER" text="a2 = ">
                                 <HBox.margin>
-                                    <Insets top="4.0"/>
+                                    <Insets top="4.0" />
                                 </HBox.margin>
                             </Label>
                             <JFXTextField fx:id="a2TextField">
                                 <validators>
-                                    <NumberValidator/>
+                                    <NumberValidator />
                                 </validators>
                             </JFXTextField>
                         </HBox>
                         <StackPane styleClass="slider">
-                            <JFXSlider fx:id="a2Slider" maxWidth="150.0" minWidth="150.0"
-                                       nodeOrientation="LEFT_TO_RIGHT">
+                            <JFXSlider fx:id="a2Slider" maxWidth="150.0" minWidth="150.0" nodeOrientation="LEFT_TO_RIGHT">
                                 <StackPane.margin>
-                                    <Insets left="40.0"/>
+                                    <Insets left="40.0" />
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
                         <HBox>
                             <Label fx:id="N0Label" alignment="CENTER" text="N0 = ">
                                 <HBox.margin>
-                                    <Insets top="4.0"/>
+                                    <Insets top="4.0" />
                                 </HBox.margin>
                             </Label>
                             <JFXTextField fx:id="N0TextField">
                                 <validators>
-                                    <NumberValidator/>
+                                    <NumberValidator />
                                 </validators>
                             </JFXTextField>
                         </HBox>
                         <StackPane styleClass="slider">
-                            <JFXSlider fx:id="N0Slider" maxWidth="150.0" minWidth="150.0"
-                                       nodeOrientation="LEFT_TO_RIGHT">
+                            <JFXSlider fx:id="N0Slider" maxWidth="150.0" minWidth="150.0" nodeOrientation="LEFT_TO_RIGHT">
                                 <StackPane.margin>
-                                    <Insets bottom="5.0" left="40.0"/>
+                                    <Insets bottom="5.0" left="40.0" />
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
                         <HBox>
                             <Label fx:id="NrLabel" alignment="CENTER" text="Nr = ">
                                 <HBox.margin>
-                                    <Insets top="4.0"/>
+                                    <Insets top="4.0" />
                                 </HBox.margin>
                             </Label>
                             <JFXTextField fx:id="NrTextField">
                                 <validators>
-                                    <NumberValidator/>
+                                    <NumberValidator />
                                 </validators>
                             </JFXTextField>
                         </HBox>
                         <StackPane styleClass="slider">
-                            <JFXSlider fx:id="NrSlider" maxWidth="150.0" minWidth="150.0"
-                                       nodeOrientation="LEFT_TO_RIGHT">
+                            <JFXSlider fx:id="NrSlider" maxWidth="150.0" minWidth="150.0" nodeOrientation="LEFT_TO_RIGHT">
                                 <StackPane.margin>
-                                    <Insets left="40.0"/>
+                                    <Insets left="40.0" />
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
                         <HBox>
                             <Label fx:id="P0Label" alignment="CENTER" text="P0 = ">
                                 <HBox.margin>
-                                    <Insets top="4.0"/>
+                                    <Insets top="4.0" />
                                 </HBox.margin>
                             </Label>
                             <JFXTextField fx:id="P0TextField">
                                 <validators>
-                                    <NumberValidator/>
+                                    <NumberValidator />
                                 </validators>
                             </JFXTextField>
                         </HBox>
                         <StackPane styleClass="slider">
-                            <JFXSlider fx:id="P0Slider" maxWidth="150.0" minWidth="150.0"
-                                       nodeOrientation="LEFT_TO_RIGHT">
+                            <JFXSlider fx:id="P0Slider" maxWidth="150.0" minWidth="150.0" nodeOrientation="LEFT_TO_RIGHT">
                                 <StackPane.margin>
-                                    <Insets bottom="5.0" left="40.0"/>
+                                    <Insets bottom="5.0" left="40.0" />
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
                         <HBox>
                             <Label fx:id="PrLabel" alignment="CENTER" text="Pr = ">
                                 <HBox.margin>
-                                    <Insets top="4.0"/>
+                                    <Insets top="4.0" />
                                 </HBox.margin>
                             </Label>
                             <JFXTextField fx:id="PrTextField">
                                 <validators>
-                                    <NumberValidator/>
+                                    <NumberValidator />
                                 </validators>
                             </JFXTextField>
                         </HBox>
                         <StackPane styleClass="slider">
-                            <JFXSlider fx:id="PrSlider" maxWidth="150.0" minWidth="150.0"
-                                       nodeOrientation="LEFT_TO_RIGHT">
+                            <JFXSlider fx:id="PrSlider" maxWidth="150.0" minWidth="150.0" nodeOrientation="LEFT_TO_RIGHT">
                                 <StackPane.margin>
-                                    <Insets left="40.0"/>
+                                    <Insets left="40.0" />
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
                         <HBox>
                             <Label fx:id="TLabel" alignment="CENTER" text="T = ">
                                 <HBox.margin>
-                                    <Insets top="4.0"/>
+                                    <Insets top="4.0" />
                                 </HBox.margin>
                             </Label>
                             <JFXTextField fx:id="TTextField">
                                 <validators>
-                                    <NumberValidator/>
+                                    <NumberValidator />
                                 </validators>
                             </JFXTextField>
                         </HBox>
                         <StackPane styleClass="slider">
-                            <JFXSlider fx:id="TSlider" maxWidth="150.0" minWidth="150.0"
-                                       nodeOrientation="LEFT_TO_RIGHT">
+                            <JFXSlider fx:id="TSlider" maxWidth="150.0" minWidth="150.0" nodeOrientation="LEFT_TO_RIGHT">
                                 <StackPane.margin>
-                                    <Insets bottom="5.0" left="40.0"/>
+                                    <Insets bottom="5.0" left="40.0" />
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
                         <HBox>
                             <Label fx:id="NLabel" alignment="CENTER" text="N = ">
                                 <HBox.margin>
-                                    <Insets top="4.0"/>
+                                    <Insets top="4.0" />
                                 </HBox.margin>
                             </Label>
                             <JFXTextField fx:id="NTextField">
                                 <validators>
-                                    <NumberValidator/>
+                                    <NumberValidator />
                                 </validators>
                             </JFXTextField>
                         </HBox>
                         <StackPane styleClass="slider">
-                            <JFXSlider fx:id="NSlider" maxWidth="150.0" minWidth="150.0"
-                                       nodeOrientation="LEFT_TO_RIGHT">
+                            <JFXSlider fx:id="NSlider" maxWidth="150.0" minWidth="150.0" nodeOrientation="LEFT_TO_RIGHT">
                                 <StackPane.margin>
-                                    <Insets left="40.0"/>
+                                    <Insets left="40.0" />
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
@@ -190,12 +188,21 @@
             <StackPane>
                 <LineChart fx:id="lineChart">
                     <xAxis>
-                        <NumberAxis side="BOTTOM" fx:id="xAxis"/>
+                        <NumberAxis side="BOTTOM" fx:id="xAxis" />
                     </xAxis>
                     <yAxis>
-                        <NumberAxis side="LEFT" fx:id="yAxis"/>
+                        <NumberAxis fx:id="yAxis" side="LEFT" />
                     </yAxis>
+               <StackPane.margin>
+                  <Insets bottom="10.0" />
+               </StackPane.margin>
+               <padding>
+                  <Insets bottom="10.0" />
+               </padding>
                 </LineChart>
+            <BorderPane.margin>
+               <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+            </BorderPane.margin>
             </StackPane>
         </center>
     </BorderPane>
