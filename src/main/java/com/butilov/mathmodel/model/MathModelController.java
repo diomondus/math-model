@@ -83,8 +83,8 @@ public class MathModelController {
 
     private void initChartData() {
         lineChart.setTitle("Модель зависимости зарплат и занятости");
-        xAxis.setLabel("Время");
-        yAxis.setLabel("Величина зарплаты/занятости");
+        xAxis.setLabel("Время, t");
+        yAxis.setLabel("Величина занятости, N и зарплаты, P");
         lineChart.getData().clear();
         executeChartSeries(
                 getDoubleValueFromTF(a1TextField),
