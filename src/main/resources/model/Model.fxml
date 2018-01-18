@@ -8,7 +8,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1"
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="com.butilov.mathmodel.model.MathModelController">
     <BorderPane prefWidth="1000.0">
         <stylesheets>
@@ -181,6 +181,12 @@
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
+                        <JFXButton styleClass="action-button" text="Равновесие">
+                            <VBox.margin>
+                                <Insets bottom="10.0"/>
+                            </VBox.margin>
+                        </JFXButton>
+                        <JFXButton styleClass="action-button" text="Зарплата слишком высокая"/>
                     </VBox>
 
                 </VBox>
@@ -190,10 +196,10 @@
             </JFXMasonryPane>
         </left>
         <center>
-            <StackPane prefHeight="650.0" prefWidth="750.0">
+            <StackPane prefHeight="750.0" prefWidth="750.0">
                 <LineChart fx:id="lineChart">
                     <xAxis>
-                        <NumberAxis fx:id="xAxis" side="BOTTOM" />
+                        <NumberAxis fx:id="xAxis" side="BOTTOM"/>
                     </xAxis>
                     <yAxis>
                         <NumberAxis fx:id="yAxis" side="LEFT"/>
@@ -202,6 +208,9 @@
                         <Insets bottom="15.0" right="15.0" top="15.0"/>
                     </StackPane.margin>
                 </LineChart>
+                <BorderPane.margin>
+                    <Insets bottom="15.0"/>
+                </BorderPane.margin>
             </StackPane>
         </center>
     </BorderPane>
