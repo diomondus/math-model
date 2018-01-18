@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXTabPane?>
 <?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import java.net.URL?>
@@ -14,7 +14,7 @@
             <URL value="@base.css"/>
         </stylesheets>
         <center>
-            <TabPane tabClosingPolicy="UNAVAILABLE">
+            <JFXTabPane>
                 <Tab text="Модель">
                     <graphic>
                         <MaterialIconView size="2em" styleClass="tab-model-icon"/>
@@ -27,7 +27,7 @@
                     </graphic>
                     <AnchorPane fx:id="theoryTab"/>
                 </Tab>
-            </TabPane>
+            </JFXTabPane>
         </center>
     </BorderPane>
 </AnchorPane>

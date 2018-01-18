@@ -2,6 +2,19 @@
     -fx-font-family: "Material Design Icons";
 }
 
+.jfx-tab-pane .headers-region {
+    -fx-background-color: mediumaquamarine;
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: mediumaquamarine;
+}
+
+/*.jfx-tab-pane .tab-selected-line {*/
+/*-fx-stroke: #75bc1b;*/
+/*-fx-stroke-width: 3pt;*/
+/*}*/
+
 .card {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
 }
@@ -34,7 +47,7 @@
 
 .tab-model-icon {
     -glyph-name: "MULTILINE_CHART";
-    -fx-fill: #4fcd6d;
+    -fx-fill: #464547;
 }
 
 .upload_icon {
