@@ -64,20 +64,22 @@
 
 .chart {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
-    -fx-background-radius: 0 0 5px 5px;
+    -fx-background-radius: 5px 5px 5px 5px;
     -fx-background-color: rgb(255, 255, 255);
-    -fx-padding: 14.0px;
+    -fx-padding: 0.0px;
 }
 
-/*.chart-series-line {*/
-    /*-fx-stroke-width: 2px;*/
-    /*-fx-effect: null;*/
-/*}*/
+.chart-title {
+    -fx-background-radius: 5 5 0 0;
+    -fx-background-color: mediumaquamarine;
+    -fx-pref-height: 35px;
+}
 
-/*.default-color0.chart-series-line {*/
-    /*-fx-stroke: #e9967a;*/
-/*}*/
+.chart-content {
+    -fx-padding: 30px;
+}
 
-/*.default-color1.chart-series-line {*/
-    /*-fx-stroke: #f0e68c;*/
-/*}*/
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
