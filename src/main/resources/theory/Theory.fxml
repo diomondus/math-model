@@ -3,9 +3,9 @@
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<AnchorPane prefHeight="650.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121"
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.butilov.mathmodel.model.TheoryController">
-<ImageView fitHeight="650.0" fitWidth="994.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="theory/Theory.png" backgroundLoading="true"/>
+    <ImageView pickOnBounds="true" preserveRatio="true">
+        <Image url="/theory/theory.png" backgroundLoading="true"/>
     </ImageView>
 </AnchorPane>
