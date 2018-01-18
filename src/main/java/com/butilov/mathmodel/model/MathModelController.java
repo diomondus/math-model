@@ -9,6 +9,9 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.KeyCode;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.input.MouseEvent;
 import org.springframework.stereotype.Component;
 
 /**
@@ -57,18 +60,23 @@ public class MathModelController {
         slider.setMin(minValue);
         slider.setValue(defaultValue);
         slider.setMax(maxValue);
-        slider.setBlockIncrement(1);
         // todo попробовать прикрутить bind  textField.textProperty().bind(Bindings.convert(slider.valueProperty()));
         slider.valueProperty().addListener((observable, oldValue, newValue) -> {
             textField.setText(String.valueOf(newValue.intValue()));
-            initChartData();
         });
+        slider.addEventFilter(MouseEvent.MOUSE_RELEASED, event -> initChartData());
+
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             int value = newValue.isEmpty() ? 0 : Double.valueOf(newValue).intValue();
             if (value >= 0 && value <= maxValue) {
                 slider.setValue(value);
             } else {
                 textField.textProperty().setValue(oldValue);
+            }
+        });
+        textField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.ENTER) {
+                initChartData();
             }
         });
     }
