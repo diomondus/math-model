@@ -96,9 +96,15 @@ public class MathModelController {
         slider.setMin(minValue);
         slider.setMax(maxValue);
         slider.setValue(defaultValue);
+        slider.setBlockIncrement((maxValue - minValue) / 20);
         // todo попробовать прикрутить bind  textField.textProperty().bind(Bindings.convert(slider.valueProperty()));
         slider.valueProperty().addListener((o, old, newVal) -> textField.setText(String.valueOf(newVal.intValue())));
         slider.addEventFilter(MouseEvent.MOUSE_RELEASED, event -> initChartData());
+        slider.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+            if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT) {
+                initChartData();
+            }
+        });
 
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
             int value = newValue.isEmpty() ? 0 : Double.valueOf(newValue).intValue();
