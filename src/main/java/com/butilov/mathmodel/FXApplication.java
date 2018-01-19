@@ -17,9 +17,6 @@ import org.springframework.stereotype.Component;
 public class FXApplication
         extends Application {
 
-    @Value("${title:JavaFX приложение}") // todo
-    String mWindowTitle;
-
     private ConfigurableApplicationContext context;
     @Autowired
     private Scene mainScene;
@@ -36,7 +33,6 @@ public class FXApplication
     @Override
     public void start(Stage primaryStage)
             throws Exception {
-        primaryStage.setTitle(mWindowTitle);
         primaryStage.setScene(mainScene);
         primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
