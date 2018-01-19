@@ -40,8 +40,13 @@
     -fx-background-color: mediumaquamarine;
 }
 
-.tab-theory-icon {
+.tab-about-icon {
     -glyph-name: "INFO_OUTLINE";
+    -fx-fill: #464547;
+}
+
+.tab-theory-icon {
+    -glyph-name: "BOOK";
     -fx-fill: #464547;
 }
 

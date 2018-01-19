@@ -3,8 +3,7 @@
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
@@ -26,6 +25,12 @@
                         <MaterialIconView size="1.8em" styleClass="tab-theory-icon"/>
                     </graphic>
                     <AnchorPane fx:id="theoryTab"/>
+                </Tab>
+                <Tab text="О программе">
+                    <graphic>
+                        <MaterialIconView size="1.8em" styleClass="tab-about-icon"/>
+                    </graphic>
+                    <AnchorPane fx:id="aboutTab"/>
                 </Tab>
             </JFXTabPane>
         </center>

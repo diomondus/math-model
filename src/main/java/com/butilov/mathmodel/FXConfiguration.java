@@ -53,5 +53,13 @@ public class FXConfiguration {
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/theory/Theory.fxml"));
         return fxLoader.load();
     }
+
+    @Bean
+    @Qualifier("aboutPane")
+    public Node aboutPane()
+            throws IOException {
+        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/about/About.fxml"));
+        return fxLoader.load();
+    }
 }
 

@@ -19,17 +19,23 @@ public class MainStageController {
         mModelPane = modelPane;
     }
 
-
     @Autowired
     @Qualifier("theoryPane")
     void setTheoryPane(Node theoryPane) {
         mTheoryPane = theoryPane;
     }
 
+    @Autowired
+    @Qualifier("aboutPane")
+    void setAboutPane(Node aboutPane) {
+        mAboutPane = aboutPane;
+    }
+
     @FXML
     public void initialize() {
         modelTab.getChildren().add(mModelPane);
         theoryTab.getChildren().add(mTheoryPane);
+        aboutTab.getChildren().add(mAboutPane);
     }
 
     public void onApplicationExit() {
@@ -40,7 +46,10 @@ public class MainStageController {
     private AnchorPane modelTab;
     @FXML
     private AnchorPane theoryTab;
+    @FXML
+    private AnchorPane aboutTab;
 
     private Node mModelPane;
     private Node mTheoryPane;
+    private Node mAboutPane;
 }
