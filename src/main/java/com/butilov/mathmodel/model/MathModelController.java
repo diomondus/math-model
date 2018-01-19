@@ -144,7 +144,7 @@ public class MathModelController {
             a1 = 0.01; // костыль!
         }
         mSolver.solveEquations(a1, a2, n0, nr, p0, pr, T, N);
-        for (int i = 0; i < N; i++) {
+        for (int i = 1; i < N; i++) {
             nData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getN()[i]));
             pData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getP()[i]));
         }
