@@ -70,8 +70,8 @@ public class MathModelController {
         initTooltip(N0TextField, N0Label, "Значение числа занятых мест в начале исследования");
         initTooltip(PrTextField, PrLabel, "Значение зарплаты в начале исследования (равновесие)");
         initTooltip(NrTextField, NrLabel, "Значение числа занятых мест в начале исследования (равновесие)");
-        initTooltip(TTextField, TLabel, "Время наблюдения за реакцией");
-        initTooltip(NTextField, NLabel, "Количество узлов сетки");
+        initTooltip(TTextField, TLabel, "Время наблюдения");
+        initTooltip(NTextField, NLabel, "Количество разбиений по времени");
     }
 
     private void initTooltip(TextField textField, Label label, String tooltipString) {

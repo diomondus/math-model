@@ -20,7 +20,7 @@
                         <Label text="Простейшая модель изменения зарплаты и занятости"/>
                     </StackPane>
                     <VBox styleClass="body">
-                        <ImageView fitHeight="660" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="650" pickOnBounds="true" preserveRatio="true">
                             <Image url="/theory/theory.png" backgroundLoading="true"/>
                         </ImageView>
                     </VBox>
