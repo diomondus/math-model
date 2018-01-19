@@ -1,6 +1,6 @@
 package com.butilov.mathmodel;
 
-import com.butilov.mathmodel.model.MathModelController;
+import com.butilov.mathmodel.controllers.MathModelController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;

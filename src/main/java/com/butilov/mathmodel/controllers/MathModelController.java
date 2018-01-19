@@ -1,4 +1,4 @@
-package com.butilov.mathmodel.model;
+package com.butilov.mathmodel.controllers;
 
 import com.butilov.mathmodel.Solver;
 import com.jfoenix.controls.JFXButton;
