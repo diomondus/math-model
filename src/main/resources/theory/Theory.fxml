@@ -1,11 +1,34 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXMasonryPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.121"
             xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.butilov.mathmodel.model.TheoryController">
-    <ImageView pickOnBounds="true" preserveRatio="true">
-        <Image url="/theory/theory.png" backgroundLoading="true"/>
-    </ImageView>
+    <BorderPane>
+        <stylesheets>
+            <URL value="@../base.css"/>
+        </stylesheets>
+        <center>
+            <JFXMasonryPane prefWidth="640">
+                <VBox styleClass="card">
+                    <StackPane styleClass="header" VBox.vgrow="ALWAYS">
+                        <Label text="Простейшая модель изменения зарплаты и занятости"/>
+                    </StackPane>
+                    <VBox styleClass="body">
+                        <ImageView fitHeight="660" pickOnBounds="true" preserveRatio="true">
+                            <Image url="/theory/theory.png" backgroundLoading="true"/>
+                        </ImageView>
+                    </VBox>
+                </VBox>
+                <BorderPane.margin>
+                    <Insets left="170.0" top="10.0" bottom="10"/>
+                </BorderPane.margin>
+            </JFXMasonryPane>
+        </center>
+    </BorderPane>
 </AnchorPane>
