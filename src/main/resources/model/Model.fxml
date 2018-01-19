@@ -182,7 +182,7 @@
                         </StackPane>
                         <JFXButton fx:id="exampleButton1" styleClass="action-button" text="Равновесие">
                             <VBox.margin>
-                                <Insets top="10.0" bottom="5.0"/>
+                                <Insets bottom="5.0" top="10.0"/>
                             </VBox.margin>
                         </JFXButton>
                         <JFXButton fx:id="exampleButton2" styleClass="action-button" text="Зарплата слишком высокая">
@@ -199,22 +199,38 @@
             </JFXMasonryPane>
         </left>
         <center>
-            <StackPane prefHeight="750.0" prefWidth="750.0">
-                <LineChart fx:id="lineChart">
-                    <xAxis>
-                        <NumberAxis fx:id="xAxis" side="BOTTOM"/>
-                    </xAxis>
-                    <yAxis>
-                        <NumberAxis fx:id="yAxis" side="LEFT"/>
-                    </yAxis>
-                    <StackPane.margin>
-                        <Insets bottom="15.0" right="15.0" top="15.0"/>
-                    </StackPane.margin>
-                </LineChart>
-                <BorderPane.margin>
-                    <Insets bottom="15.0"/>
-                </BorderPane.margin>
-            </StackPane>
+            <BorderPane styleClass="bottom-keypad">
+                <center>
+                    <StackPane prefHeight="500.0" prefWidth="750.0">
+                        <LineChart fx:id="lineChart" prefHeight="500.0" prefWidth="725.0">
+                            <xAxis>
+                                <NumberAxis side="BOTTOM" fx:id="xAxis"/>
+                            </xAxis>
+                            <yAxis>
+                                <NumberAxis fx:id="yAxis" side="LEFT"/>
+                            </yAxis>
+                            <StackPane.margin>
+                                <Insets bottom="1.0" right="5.0" top="5.0"/>
+                            </StackPane.margin>
+                        </LineChart>
+                        <BorderPane.margin>
+                            <Insets bottom="15.0"/>
+                        </BorderPane.margin>
+                    </StackPane>
+                </center>
+                <bottom>
+                    <JFXMasonryPane maxHeight="100.0" styleClass="card">
+                        <VBox>
+                            <StackPane styleClass="header" VBox.vgrow="ALWAYS">
+                                <Label text="События"/>
+                            </StackPane>
+                            <StackPane styleClass="body">
+                                <JFXTextArea fx:id="textArea" prefHeight="70.0" prefWidth="682.0"/>
+                            </StackPane>
+                        </VBox>
+                    </JFXMasonryPane>
+                </bottom>
+            </BorderPane>
         </center>
     </BorderPane>
 </AnchorPane>

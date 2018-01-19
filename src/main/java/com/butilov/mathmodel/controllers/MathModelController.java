@@ -3,6 +3,7 @@ package com.butilov.mathmodel.controllers;
 import com.butilov.mathmodel.Solver;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
+import com.jfoenix.controls.JFXTextArea;
 import com.jfoenix.controls.JFXTextField;
 import javafx.fxml.FXML;
 import javafx.scene.chart.NumberAxis;
@@ -35,6 +36,14 @@ public class MathModelController {
         initButtonActions();
         initTooltips();
         initChartData();
+        initTextArea();
+    }
+
+    private void initTextArea() {
+        textArea.setText("Модель аналогична модели колебаний. " +
+                "\nВыведенная из равновесного состояния система стремится к равновесию со скоростями а1 и а2." +
+                "\nРавновесное состояние - значение зарплаты и занятости, которые устраивают рабочих и работодателя");
+        textArea.setEditable(false);
     }
 
     private void initButtonActions() {
@@ -154,6 +163,8 @@ public class MathModelController {
         lineChart.getData().add(nData);
     }
 
+    @FXML
+    private JFXTextArea textArea;
     @FXML
     private JFXButton exampleButton1;
     @FXML
