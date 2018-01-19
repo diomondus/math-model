@@ -31,10 +31,10 @@ public class MathModelController {
 
     private void initButtonActions() {
         exampleButton1.setOnAction(e -> {
-            P0TextField.textProperty().setValue("50000");
-            N0TextField.textProperty().setValue("20000");
-            PrTextField.textProperty().setValue("50000");
-            NrTextField.textProperty().setValue("20000");
+            P0TextField.textProperty().setValue("60000");
+            N0TextField.textProperty().setValue("25000");
+            PrTextField.textProperty().setValue("60000");
+            NrTextField.textProperty().setValue("25000");
             initChartData();
         });
         exampleButton2.setOnAction(e -> {
@@ -64,14 +64,14 @@ public class MathModelController {
     }
 
     private void initSliders() {
-        initSliderControl(a1Slider, a1TextField, 2, 0, 500);
-        initSliderControl(a2Slider, a2TextField, 2, 0, 500);
-        initSliderControl(N0Slider, N0TextField, 30000, 15000, 150000);
-        initSliderControl(NrSlider, NrTextField, 20000, 15000, 150000);
-        initSliderControl(P0Slider, P0TextField, 50000, 15000, 150000);
-        initSliderControl(PrSlider, PrTextField, 40000, 15000, 150000);
-        initSliderControl(TSlider, TTextField, 20, 0, 500);
-        initSliderControl(NSlider, NTextField, 200, 0, 500);
+        initSliderControl(a1Slider, a1TextField, 3, 0, 500);
+        initSliderControl(a2Slider, a2TextField, 3, 0, 500);
+        initSliderControl(N0Slider, N0TextField, 40000, 20000, 100000);
+        initSliderControl(NrSlider, NrTextField, 30000, 20000, 100000);
+        initSliderControl(P0Slider, P0TextField, 60000, 20000, 100000);
+        initSliderControl(PrSlider, PrTextField, 50000, 20000, 100000);
+        initSliderControl(TSlider, TTextField, 11, 0, 500);
+        initSliderControl(NSlider, NTextField, 250, 0, 500);
     }
 
     private void initSliderControl(Slider slider, TextField textField, int defaultValue, int minValue, int maxValue) {
@@ -135,15 +135,14 @@ public class MathModelController {
     private void executeChartSeries(double a1, double a2, double n0, double nr, double p0, double pr, double T, double N) {
         XYChart.Series<Double, Double> nData = new XYChart.Series<>();
         XYChart.Series<Double, Double> pData = new XYChart.Series<>();
-        int shift = 1;
         if (a1 == 0) {
             a1 = 0.01; // костыль!
         }
-        double h = T / N / shift;
+        double h = T / N;
         double b = Math.sqrt(a1);
         double c = Math.sqrt(a2);
         double a = b * c;
-        for (int i = 1; i < N * shift; i++) {
+        for (int i = 1; i < N; i++) {
             double t = i * h;
             double p = (Math.sin(a * t) * c * (nr - n0)) / b;
             p = p + Math.cos(a * t) * (-pr + p0) + pr;
