@@ -13,12 +13,6 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MainStageController {
-
-    @Autowired
-    public MainStageController(FXTestBean aFXTestBean) {
-        mFXTestBean = aFXTestBean;
-    }
-
     @Autowired
     @Qualifier("modelPane")
     void setModelPane(Node modelPane) {
@@ -49,6 +43,4 @@ public class MainStageController {
 
     private Node mModelPane;
     private Node mTheoryPane;
-
-    private FXTestBean mFXTestBean;
 }

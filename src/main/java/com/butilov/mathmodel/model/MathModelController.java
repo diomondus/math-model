@@ -1,5 +1,6 @@
 package com.butilov.mathmodel.model;
 
+import com.butilov.mathmodel.Solver;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextField;
@@ -13,6 +14,7 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 /**
@@ -21,6 +23,12 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class MathModelController {
+
+    @Autowired
+    public MathModelController(Solver aSolver) {
+        mSolver = aSolver;
+    }
+
     @FXML
     public void initialize() {
         initSliders();
@@ -131,28 +139,16 @@ public class MathModelController {
         return value.isEmpty() ? 0 : Double.valueOf(value);
     }
 
-    // todo перенести метод
     private void executeChartSeries(double a1, double a2, double n0, double nr, double p0, double pr, double T, double N) {
         XYChart.Series<Double, Double> nData = new XYChart.Series<>();
         XYChart.Series<Double, Double> pData = new XYChart.Series<>();
         if (a1 == 0) {
             a1 = 0.01; // костыль!
         }
-        double h = T / N;
-        double b = Math.sqrt(a1);
-        double c = Math.sqrt(a2);
-        double a = b * c;
-        for (int i = 1; i < N; i++) {
-            double t = i * h;
-            double p = (Math.sin(a * t) * c * (nr - n0)) / b;
-            p = p + Math.cos(a * t) * (-pr + p0) + pr;
-
-            double n = Math.sin(a * t) * b * (p0 - pr) + nr * c;
-            n = n - Math.cos(a * t) * c * (nr - n0);
-            n = n / b;
-
-            nData.getData().add(new XYChart.Data<>(t, n));
-            pData.getData().add(new XYChart.Data<>(t, p));
+        mSolver.solveEquations(a1, a2, n0, nr, p0, pr, T, N);
+        for (int i = 0; i < N; i++) {
+            nData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getN()[i]));
+            pData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getP()[i]));
         }
         pData.setName("Размер зарплаты");
         nData.setName("Количество занятых");
@@ -223,4 +219,6 @@ public class MathModelController {
     private NumberAxis yAxis;
     @FXML
     XYChart<Double, Double> lineChart;
+
+    private Solver mSolver;
 }

@@ -1,5 +1,6 @@
 package com.butilov.mathmodel;
 
+import com.butilov.mathmodel.model.MathModelController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -19,12 +20,10 @@ import java.util.Properties;
  * on 10.01.18.
  */
 @Configuration
-public class FXConfiguration
-{
+public class FXConfiguration {
     @Bean
     public Scene getMainScene(MainStageController aMainStageController) // todo сделать по @Qualifier
-            throws IOException
-    {
+            throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MainScene.fxml"));
         Properties properties = new Properties();
         Path propFile = Paths.get("application.properties");
@@ -40,18 +39,17 @@ public class FXConfiguration
 
     @Bean
     @Qualifier("modelPane")
-    public Node modelPane()
-            throws IOException
-    {
-        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/model/Model.fxml"));
-        return fxLoader.load();
+    public Node modelPane(MathModelController aMathModelController)
+            throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/model/Model.fxml"));
+        fxmlLoader.setController(aMathModelController);
+        return fxmlLoader.load();
     }
 
     @Bean
     @Qualifier("theoryPane")
     public Node theoryPane()
-            throws IOException
-    {
+            throws IOException {
         FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/theory/Theory.fxml"));
         return fxLoader.load();
     }

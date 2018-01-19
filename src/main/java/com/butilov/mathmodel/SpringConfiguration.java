@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
 @ComponentScan("com.butilov.mathmodel")
 public class SpringConfiguration {
     @Bean
-    public FXTestBean getBean() {
-        return new FXTestBean();
+    public Solver getBean() {
+        return new Solver();
     }
 }
