@@ -88,9 +88,7 @@ public class MathModelController {
         slider.setMax(maxValue);
         slider.setValue(defaultValue);
         // todo попробовать прикрутить bind  textField.textProperty().bind(Bindings.convert(slider.valueProperty()));
-        slider.valueProperty().addListener((observable, oldValue, newValue) -> {
-            textField.setText(String.valueOf(newValue.intValue()));
-        });
+        slider.valueProperty().addListener((o, old, newVal) -> textField.setText(String.valueOf(newVal.intValue())));
         slider.addEventFilter(MouseEvent.MOUSE_RELEASED, event -> initChartData());
 
         textField.textProperty().addListener((observable, oldValue, newValue) -> {
@@ -218,7 +216,7 @@ public class MathModelController {
     @FXML
     private NumberAxis yAxis;
     @FXML
-    XYChart<Double, Double> lineChart;
+    private XYChart<Double, Double> lineChart;
 
     private Solver mSolver;
 }
