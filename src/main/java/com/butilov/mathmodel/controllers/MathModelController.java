@@ -53,6 +53,7 @@ public class MathModelController {
             N0TextField.textProperty().setValue("25000");
             PrTextField.textProperty().setValue("60000");
             NrTextField.textProperty().setValue("25000");
+            eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.example1"));
             initChartData();
         });
         exampleButton2.setOnAction(e -> {
@@ -60,6 +61,7 @@ public class MathModelController {
             N0TextField.textProperty().setValue("20000");
             PrTextField.textProperty().setValue("40000");
             NrTextField.textProperty().setValue("20000");
+            eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.example2"));
             initChartData();
         });
         localeButton.setOnAction(event -> mI18N.switchLocale());
@@ -84,49 +86,63 @@ public class MathModelController {
     }
 
     private void initSliders() {
-        initSliderControl(a1Slider, a1TextField, 3, 0, 500);
-        initSliderControl(a2Slider, a2TextField, 3, 0, 500);
-        initSliderControl(N0Slider, N0TextField, 40000, 20000, 100000);
-        initSliderControl(NrSlider, NrTextField, 30000, 20000, 100000);
-        initSliderControl(P0Slider, P0TextField, 60000, 20000, 100000);
-        initSliderControl(PrSlider, PrTextField, 50000, 20000, 100000);
-        initSliderControl(TSlider, TTextField, 11, 0, 500);
-        initSliderControl(NSlider, NTextField, 250, 0, 500);
+        initSliderControl(a1Slider, a1TextField, 3, 0, 500, "events.inc.a1", "events.dec.a1");
+        initSliderControl(a2Slider, a2TextField, 3, 0, 500, "events.inc.a2", "events.dec.a2");
+        initSliderControl(N0Slider, N0TextField, 40000, 20000, 100000, "events.inc.N0", "events.dec.N0");
+        initSliderControl(NrSlider, NrTextField, 30000, 20000, 100000, "events.inc.Nr", "events.dec.Nr");
+        initSliderControl(P0Slider, P0TextField, 60000, 20000, 100000, "events.inc.P0", "events.dec.P0");
+        initSliderControl(PrSlider, PrTextField, 50000, 20000, 100000, "events.inc.Pr", "events.dec.Pr");
+        initSliderControl(TSlider, TTextField, 11, 0, 500, "events.inc.T", "events.dec.T");
+        initSliderControl(NSlider, NTextField, 250, 0, 500, "events.inc.N", "events.dec.N");
     }
 
-    private void initSliderControl(Slider slider, TextField textField, int defaultValue, int minValue, int maxValue) {
-        textField.setText(String.valueOf(defaultValue));
-        slider.setMin(minValue);
-        slider.setMax(maxValue);
-        slider.setValue(defaultValue);
-        slider.setBlockIncrement((maxValue - minValue) / 20);
+    private void initSliderControl(Slider s, TextField tf, int start, int min, int max, String incKey, String decKey) {
+        tf.setText(String.valueOf(start));
+        s.setMin(min);
+        s.setMax(max);
+        s.setValue(start);
+        s.setBlockIncrement((max - min) / 20);
         // todo попробовать прикрутить bind  textField.textProperty().bind(Bindings.convert(slider.valueProperty()));
-        slider.valueProperty().addListener((o, old, newVal) -> textField.setText(String.valueOf(newVal.intValue())));
-        slider.addEventFilter(MouseEvent.MOUSE_RELEASED, event -> initChartData());
-        slider.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
+        s.valueProperty().addListener((o, oldValue, newVal) -> {
+            tf.setText(String.valueOf(newVal.intValue()));
+            if (newVal.intValue() > oldValue.intValue()) {
+                eventsTextArea.textProperty().bind(mI18N.createStringBinding(incKey));
+            }
+            if (newVal.intValue() < oldValue.intValue()) {
+                eventsTextArea.textProperty().bind(mI18N.createStringBinding(decKey));
+            }
+        });
+        s.addEventFilter(MouseEvent.MOUSE_RELEASED, event -> initChartData());
+        s.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT) {
                 initChartData();
             }
         });
 
-        textField.textProperty().addListener((observable, oldValue, newValue) -> {
+        tf.textProperty().addListener((observable, oldValue, newValue) -> {
             int value = newValue.isEmpty() ? 0 : Double.valueOf(newValue).intValue();
-            if (value >= minValue && value <= maxValue) {
-                slider.setValue(value);
+            if (value >= min && value <= max) {
+                s.setValue(value);
+                if (value > Integer.valueOf(oldValue)) {
+                    eventsTextArea.textProperty().bind(mI18N.createStringBinding(incKey));
+                }
+                if (value < Integer.valueOf(oldValue)) {
+                    eventsTextArea.textProperty().bind(mI18N.createStringBinding(decKey));
+                }
             }
         });
-        textField.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+        tf.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
             if (event.getCode() == KeyCode.ENTER) {
-                final String stringValue = textField.textProperty().getValue();
+                final String stringValue = tf.textProperty().getValue();
                 int value = stringValue.isEmpty() ? 0 : Double.valueOf(stringValue).intValue();
-                if (value >= minValue && value <= maxValue) {
-                    slider.setValue(value);
-                } else if (value < minValue) {
-                    slider.setValue(minValue);
-                    textField.textProperty().setValue(String.valueOf(minValue));
+                if (value >= min && value <= max) {
+                    s.setValue(value);
+                } else if (value < min) {
+                    s.setValue(min);
+                    tf.textProperty().setValue(String.valueOf(min));
                 } else {
-                    slider.setValue(maxValue);
-                    textField.textProperty().setValue(String.valueOf(maxValue));
+                    s.setValue(max);
+                    tf.textProperty().setValue(String.valueOf(max));
                 }
                 initChartData();
             }
