@@ -37,6 +37,7 @@ public class MathModelController {
         initSliders();
         initButtonActions();
         initTooltips();
+        initChartText();
         initChartData();
         initTextArea();
     }
@@ -135,9 +136,6 @@ public class MathModelController {
     }
 
     private void initChartData() {
-        lineChart.setTitle("Модель зависимости зарплат и занятости");
-        xAxis.setLabel("Время, t");
-        yAxis.setLabel("Занятость, N   и   зарплата, P");
         lineChart.getData().clear();
         executeChartSeries(
                 getDoubleValueFromTF(a1TextField),
@@ -149,6 +147,12 @@ public class MathModelController {
                 getDoubleValueFromTF(TTextField),
                 getDoubleValueFromTF(NTextField)
         );
+    }
+
+    private void initChartText() {
+        lineChart.setTitle("Модель зависимости зарплат и занятости");
+        xAxis.setLabel("Время, t");
+        yAxis.setLabel("Занятость, N   и   зарплата, P");
     }
 
     private Double getDoubleValueFromTF(TextField aTextField) {
