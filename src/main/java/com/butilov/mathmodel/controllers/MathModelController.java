@@ -19,6 +19,8 @@ import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.IntStream;
+
 /**
  * Created by Dmitry Butilov
  * on 11.01.18.
@@ -136,7 +138,6 @@ public class MathModelController {
     }
 
     private void initChartData() {
-        lineChart.getData().clear();
         executeChartSeries(
                 getDoubleValueFromTF(a1TextField),
                 getDoubleValueFromTF(a2TextField),
@@ -161,16 +162,18 @@ public class MathModelController {
     }
 
     private void executeChartSeries(double a1, double a2, double n0, double nr, double p0, double pr, double T, double N) {
+        lineChart.getData().clear();
         XYChart.Series<Double, Double> nData = new XYChart.Series<>();
         XYChart.Series<Double, Double> pData = new XYChart.Series<>();
         if (a1 == 0) {
             a1 = 0.01; // костыль!
         }
         mSolver.solveEquations(a1, a2, n0, nr, p0, pr, T, N);
-        for (int i = 1; i < N; i++) {
+
+        IntStream.range(1, (int) N).forEach(i -> {
             nData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getN()[i]));
             pData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getP()[i]));
-        }
+        });
         pData.setName("Размер зарплаты");
         nData.setName("Количество занятых");
         lineChart.getData().add(pData);
