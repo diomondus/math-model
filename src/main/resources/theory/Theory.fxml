@@ -7,8 +7,7 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.121"
-            xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.butilov.mathmodel.controllers.TheoryController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <BorderPane>
         <stylesheets>
             <URL value="@../base.css"/>
@@ -17,7 +16,7 @@
             <JFXMasonryPane prefWidth="640">
                 <VBox styleClass="card">
                     <StackPane styleClass="header" VBox.vgrow="ALWAYS">
-                        <Label text="Простейшая модель изменения зарплаты и занятости"/>
+                        <Label fx:id="theoryHeader"/>
                     </StackPane>
                     <VBox styleClass="body">
                         <ImageView fitHeight="650" pickOnBounds="true" preserveRatio="true">
