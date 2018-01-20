@@ -1,6 +1,7 @@
 package com.butilov.mathmodel.controllers;
 
 import com.butilov.mathmodel.Solver;
+import com.butilov.mathmodel.localization.I18N;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextArea;
@@ -26,8 +27,9 @@ import org.springframework.stereotype.Component;
 public class MathModelController {
 
     @Autowired
-    public MathModelController(Solver aSolver) {
+    public MathModelController(Solver aSolver, I18N aI18N) {
         mSolver = aSolver;
+        mI18N = aI18N;
     }
 
     @FXML
@@ -61,6 +63,8 @@ public class MathModelController {
             NrTextField.textProperty().setValue("20000");
             initChartData();
         });
+        mI18N.buttonForKey(localeButton, "button.change.lang");
+        localeButton.setOnAction(event -> mI18N.switchLocale());
     }
 
     private void initTooltips() {
@@ -175,6 +179,8 @@ public class MathModelController {
     private JFXButton exampleButton1;
     @FXML
     private JFXButton exampleButton2;
+    @FXML
+    private JFXButton localeButton;
 
     @FXML
     private Label headerLabel;
@@ -236,4 +242,6 @@ public class MathModelController {
     private XYChart<Double, Double> lineChart;
 
     private Solver mSolver;
+
+    private I18N mI18N;
 }
