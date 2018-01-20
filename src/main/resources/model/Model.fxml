@@ -180,17 +180,17 @@
                                 </StackPane.margin>
                             </JFXSlider>
                         </StackPane>
-                        <JFXButton fx:id="exampleButton1" styleClass="action-button" text="Равновесие">
+                        <JFXButton fx:id="exampleButton1" styleClass="action-button">
                             <VBox.margin>
                                 <Insets bottom="5.0" top="10.0"/>
                             </VBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="exampleButton2" styleClass="action-button" text="Зарплата слишком высокая">
+                        <JFXButton fx:id="exampleButton2" styleClass="action-button">
                             <VBox.margin>
                                 <Insets top="10.0"/>
                             </VBox.margin>
                         </JFXButton>
-                        <JFXButton fx:id="localeButton" styleClass="action-button" text="Сменить язык">
+                        <JFXButton fx:id="localeButton" styleClass="action-button">
                             <VBox.margin>
                                 <Insets top="10.0"/>
                             </VBox.margin>

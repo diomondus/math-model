@@ -154,6 +154,8 @@ public class MathModelController {
         eventsHeader.textProperty().bind(mI18N.createStringBinding("events.header"));
         eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.text"));
         // Кнопки
+        exampleButton1.textProperty().bind(mI18N.createStringBinding("button.example1"));
+        exampleButton2.textProperty().bind(mI18N.createStringBinding("button.example2"));
         localeButton.textProperty().bind(mI18N.createStringBinding("button.change.lang"));
         // Подсказки
         initTooltips();
