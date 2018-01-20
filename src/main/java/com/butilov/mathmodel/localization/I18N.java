@@ -3,8 +3,8 @@ package com.butilov.mathmodel.localization;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.Property;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.beans.property.StringProperty;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -59,15 +59,13 @@ public final class I18N {
     }
 
     public String get(final String key, final Object... args) {
-
         Properties properties = new Properties();
         Path propFile = Paths.get("src/main/resources/locale_" + getLocale().getLanguage() + ".properties");
-        String string;
+        String string = "";
         try {
             properties.load(Files.newBufferedReader(propFile));
             string = properties.getProperty(key);
-        } catch (IOException ex) {
-            string = properties.getProperty("text.not.found");
+        } catch (IOException ignored) {
         }
         return MessageFormat.format(string, args);
     }
@@ -80,7 +78,7 @@ public final class I18N {
         return Bindings.createStringBinding(func, locale);
     }
 
-    public void propertyForKey(StringProperty property, final String key, final Object... args) {
+    public <T extends Property> void propertyForKey(T property, final String key, final Object... args) {
         property.bind(createStringBinding(key, args));
     }
 }
