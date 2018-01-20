@@ -39,7 +39,7 @@ public class FXConfiguration {
     }
 
     @Bean
-    @Qualifier("modelPane")
+    @Qualifier("modelAnchorPane")
     public Node modelPane(MathModelController aMathModelController)
             throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/model/Model.fxml"));
@@ -48,7 +48,7 @@ public class FXConfiguration {
     }
 
     @Bean
-    @Qualifier("theoryPane")
+    @Qualifier("theoryAnchorPane")
     public Node theoryPane(TheoryController aTheoryController)
             throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/theory/Theory.fxml"));
@@ -57,7 +57,7 @@ public class FXConfiguration {
     }
 
     @Bean
-    @Qualifier("aboutPane")
+    @Qualifier("aboutAnchorPane")
     public Node aboutPane()
             throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/about/About.fxml"));
