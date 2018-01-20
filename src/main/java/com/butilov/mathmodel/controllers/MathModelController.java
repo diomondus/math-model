@@ -28,6 +28,9 @@ import java.util.stream.IntStream;
 @Component
 public class MathModelController {
 
+    private XYChart.Series<Double, Double> nData = new XYChart.Series<>();
+    private XYChart.Series<Double, Double> pData = new XYChart.Series<>();
+
     @Autowired
     public MathModelController(Solver aSolver, I18N aI18N) {
         mSolver = aSolver;
@@ -38,10 +41,9 @@ public class MathModelController {
     public void initialize() {
         initSliders();
         initButtonActions();
-        initTooltips();
-        initChartText();
         initChartData();
         initTextArea();
+        initText();
     }
 
     private void initTextArea() {
@@ -66,7 +68,6 @@ public class MathModelController {
             NrTextField.textProperty().setValue("20000");
             initChartData();
         });
-        mI18N.propertyForKey(localeButton.textProperty(), "button.change.lang");
         localeButton.setOnAction(event -> mI18N.switchLocale());
     }
 
@@ -150,10 +151,14 @@ public class MathModelController {
         );
     }
 
-    private void initChartText() {
-        lineChart.setTitle("Модель зависимости зарплат и занятости");
-        xAxis.setLabel("Время, t");
-        yAxis.setLabel("Занятость, N   и   зарплата, P");
+    private void initText() {
+        mI18N.propertyForKey(lineChart.titleProperty(), "linechart.title");
+
+        mI18N.propertyForKey(xAxis.labelProperty(), "linechart.xaxis");
+        mI18N.propertyForKey(yAxis.labelProperty(), "linechart.yaxis");
+        mI18N.propertyForKey(localeButton.textProperty(), "button.change.lang");
+
+        initTooltips();
     }
 
     private Double getDoubleValueFromTF(TextField aTextField) {
@@ -174,8 +179,8 @@ public class MathModelController {
             nData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getN()[i]));
             pData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getP()[i]));
         });
-        pData.setName("Размер зарплаты");
-        nData.setName("Количество занятых");
+        mI18N.propertyForKey(pData.nameProperty(),"linechart.pdata");
+        mI18N.propertyForKey(nData.nameProperty(),"linechart.ndata");
         lineChart.getData().add(pData);
         lineChart.getData().add(nData);
     }
