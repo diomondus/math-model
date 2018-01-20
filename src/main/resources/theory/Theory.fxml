@@ -19,7 +19,7 @@
                         <Label fx:id="theoryHeader"/>
                     </StackPane>
                     <VBox styleClass="body">
-                        <ImageView fitHeight="650" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="710" pickOnBounds="true" preserveRatio="true">
                             <Image url="/theory/theory.png" backgroundLoading="true"/>
                         </ImageView>
                     </VBox>
