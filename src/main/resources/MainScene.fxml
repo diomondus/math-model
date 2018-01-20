@@ -14,23 +14,23 @@
         </stylesheets>
         <center>
             <JFXTabPane>
-                <Tab text="Модель">
+                <Tab fx:id="modelTab">
                     <graphic>
                         <MaterialIconView size="2em" styleClass="tab-model-icon"/>
                     </graphic>
-                    <AnchorPane fx:id="modelTab"/>
+                    <AnchorPane fx:id="modelAnchorPane"/>
                 </Tab>
-                <Tab text="Теория">
+                <Tab fx:id="theoryTab">
                     <graphic>
                         <MaterialIconView size="1.8em" styleClass="tab-theory-icon"/>
                     </graphic>
-                    <AnchorPane fx:id="theoryTab"/>
+                    <AnchorPane fx:id="theoryAnchorPane"/>
                 </Tab>
-                <Tab text="О программе">
+                <Tab fx:id="aboutTab">
                     <graphic>
                         <MaterialIconView size="1.8em" styleClass="tab-about-icon"/>
                     </graphic>
-                    <AnchorPane fx:id="aboutTab"/>
+                    <AnchorPane fx:id="aboutAnchorPane"/>
                 </Tab>
             </JFXTabPane>
         </center>

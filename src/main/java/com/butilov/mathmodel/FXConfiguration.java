@@ -1,6 +1,7 @@
 package com.butilov.mathmodel;
 
 import com.butilov.mathmodel.controllers.MathModelController;
+import com.butilov.mathmodel.controllers.TheoryController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
@@ -38,7 +39,7 @@ public class FXConfiguration {
     }
 
     @Bean
-    @Qualifier("modelPane")
+    @Qualifier("modelAnchorPane")
     public Node modelPane(MathModelController aMathModelController)
             throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/model/Model.fxml"));
@@ -47,19 +48,20 @@ public class FXConfiguration {
     }
 
     @Bean
-    @Qualifier("theoryPane")
-    public Node theoryPane()
+    @Qualifier("theoryAnchorPane")
+    public Node theoryPane(TheoryController aTheoryController)
             throws IOException {
-        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/theory/Theory.fxml"));
-        return fxLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/theory/Theory.fxml"));
+        fxmlLoader.setController(aTheoryController);
+        return fxmlLoader.load();
     }
 
     @Bean
-    @Qualifier("aboutPane")
+    @Qualifier("aboutAnchorPane")
     public Node aboutPane()
             throws IOException {
-        FXMLLoader fxLoader = new FXMLLoader(getClass().getResource("/about/About.fxml"));
-        return fxLoader.load();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/about/About.fxml"));
+        return fxmlLoader.load();
     }
 }
 

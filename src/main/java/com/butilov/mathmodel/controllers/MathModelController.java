@@ -1,6 +1,7 @@
 package com.butilov.mathmodel.controllers;
 
 import com.butilov.mathmodel.Solver;
+import com.butilov.mathmodel.localization.I18N;
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXSlider;
 import com.jfoenix.controls.JFXTextArea;
@@ -18,6 +19,8 @@ import javafx.scene.input.MouseEvent;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.util.stream.IntStream;
+
 /**
  * Created by Dmitry Butilov
  * on 11.01.18.
@@ -26,24 +29,22 @@ import org.springframework.stereotype.Component;
 public class MathModelController {
 
     @Autowired
-    public MathModelController(Solver aSolver) {
+    public MathModelController(Solver aSolver, I18N aI18N) {
         mSolver = aSolver;
+        mI18N = aI18N;
     }
 
     @FXML
     public void initialize() {
         initSliders();
         initButtonActions();
-        initTooltips();
         initChartData();
         initTextArea();
+        initText();
     }
 
     private void initTextArea() {
-        textArea.setText("Модель аналогична модели колебаний. " +
-                "\nВыведенная из равновесного состояния система стремится к равновесию со скоростями а1 и а2." +
-                "\nРавновесное состояние - значение зарплаты и занятости, которые устраивают рабочих и работодателя");
-        textArea.setEditable(false);
+        eventsTextArea.setEditable(false);
     }
 
     private void initButtonActions() {
@@ -61,21 +62,23 @@ public class MathModelController {
             NrTextField.textProperty().setValue("20000");
             initChartData();
         });
+        localeButton.setOnAction(event -> mI18N.switchLocale());
     }
 
     private void initTooltips() {
-        initTooltip(a1TextField, a1Label, "Коэффициент изменения зарплаты");
-        initTooltip(a2TextField, a2Label, "Коэффициент изменения занятых");
-        initTooltip(P0TextField, P0Label, "Значение зарплаты в начале исследования");
-        initTooltip(N0TextField, N0Label, "Значение числа занятых мест в начале исследования");
-        initTooltip(PrTextField, PrLabel, "Значение зарплаты в начале исследования (равновесие)");
-        initTooltip(NrTextField, NrLabel, "Значение числа занятых мест в начале исследования (равновесие)");
-        initTooltip(TTextField, TLabel, "Время наблюдения");
-        initTooltip(NTextField, NLabel, "Количество разбиений по времени");
+        initTooltip(a1TextField, a1Label, "tooltip.a1");
+        initTooltip(a2TextField, a2Label, "tooltip.a2");
+        initTooltip(P0TextField, P0Label, "tooltip.P0");
+        initTooltip(N0TextField, N0Label, "tooltip.N0");
+        initTooltip(PrTextField, PrLabel, "tooltip.Pr");
+        initTooltip(NrTextField, NrLabel, "tooltip.Nr");
+        initTooltip(TTextField, TLabel, "tooltip.T");
+        initTooltip(NTextField, NLabel, "tooltip.N");
     }
 
-    private void initTooltip(TextField textField, Label label, String tooltipString) {
-        Tooltip tooltip = new Tooltip(tooltipString);
+    private void initTooltip(TextField textField, Label label, String tooltipStringKey) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.textProperty().bind(mI18N.createStringBinding(tooltipStringKey));
         textField.setTooltip(tooltip);
         label.setTooltip(tooltip);
     }
@@ -131,10 +134,6 @@ public class MathModelController {
     }
 
     private void initChartData() {
-        lineChart.setTitle("Модель зависимости зарплат и занятости");
-        xAxis.setLabel("Время, t");
-        yAxis.setLabel("Занятость, N   и   зарплата, P");
-        lineChart.getData().clear();
         executeChartSeries(
                 getDoubleValueFromTF(a1TextField),
                 getDoubleValueFromTF(a2TextField),
@@ -147,37 +146,60 @@ public class MathModelController {
         );
     }
 
+    private void initText() {
+        parametersHeader.textProperty().bind(mI18N.createStringBinding("parameters.header"));
+        // График
+        lineChart.titleProperty().bind(mI18N.createStringBinding("linechart.title"));
+        xAxis.labelProperty().bind(mI18N.createStringBinding("linechart.xaxis"));
+        yAxis.labelProperty().bind(mI18N.createStringBinding("linechart.yaxis"));
+        // События
+        eventsHeader.textProperty().bind(mI18N.createStringBinding("events.header"));
+        eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.text"));
+        // Кнопки
+        exampleButton1.textProperty().bind(mI18N.createStringBinding("button.example1"));
+        exampleButton2.textProperty().bind(mI18N.createStringBinding("button.example2"));
+        localeButton.textProperty().bind(mI18N.createStringBinding("button.change.lang"));
+        // Подсказки
+        initTooltips();
+    }
+
     private Double getDoubleValueFromTF(TextField aTextField) {
         String value = aTextField.textProperty().getValue();
         return value.isEmpty() ? 0 : Double.valueOf(value);
     }
 
     private void executeChartSeries(double a1, double a2, double n0, double nr, double p0, double pr, double T, double N) {
+        lineChart.getData().clear();
         XYChart.Series<Double, Double> nData = new XYChart.Series<>();
         XYChart.Series<Double, Double> pData = new XYChart.Series<>();
         if (a1 == 0) {
             a1 = 0.01; // костыль!
         }
         mSolver.solveEquations(a1, a2, n0, nr, p0, pr, T, N);
-        for (int i = 1; i < N; i++) {
+
+        IntStream.range(1, (int) N).forEach(i -> {
             nData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getN()[i]));
             pData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getP()[i]));
-        }
-        pData.setName("Размер зарплаты");
-        nData.setName("Количество занятых");
+        });
+        pData.nameProperty().bind(mI18N.createStringBinding("linechart.pdata"));
+        nData.nameProperty().bind(mI18N.createStringBinding("linechart.ndata"));
         lineChart.getData().add(pData);
         lineChart.getData().add(nData);
     }
 
     @FXML
-    private JFXTextArea textArea;
+    private JFXTextArea eventsTextArea;
     @FXML
     private JFXButton exampleButton1;
     @FXML
     private JFXButton exampleButton2;
+    @FXML
+    private JFXButton localeButton;
 
     @FXML
-    private Label headerLabel;
+    private Label eventsHeader;
+    @FXML
+    private Label parametersHeader;
     @FXML
     private Label a1Label;
     @FXML
@@ -236,4 +258,6 @@ public class MathModelController {
     private XYChart<Double, Double> lineChart;
 
     private Solver mSolver;
+
+    private I18N mI18N;
 }
