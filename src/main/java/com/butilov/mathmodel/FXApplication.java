@@ -1,5 +1,6 @@
 package com.butilov.mathmodel;
 
+import com.butilov.mathmodel.localization.I18N;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -19,6 +20,8 @@ public class FXApplication
 
     private ConfigurableApplicationContext context;
     @Autowired
+    private I18N mI18N;
+    @Autowired
     private Scene mainScene;
     @Autowired
     private MainStageController mMainStageController;
@@ -37,6 +40,7 @@ public class FXApplication
         primaryStage.setResizable(false);
         primaryStage.centerOnScreen();
         primaryStage.show();
+        primaryStage.titleProperty().bind(mI18N.createStringBinding("window.title"));
     }
 
     @Override
