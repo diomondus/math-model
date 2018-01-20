@@ -28,9 +28,6 @@ import java.util.stream.IntStream;
 @Component
 public class MathModelController {
 
-    private XYChart.Series<Double, Double> nData = new XYChart.Series<>();
-    private XYChart.Series<Double, Double> pData = new XYChart.Series<>();
-
     @Autowired
     public MathModelController(Solver aSolver, I18N aI18N) {
         mSolver = aSolver;
@@ -47,10 +44,7 @@ public class MathModelController {
     }
 
     private void initTextArea() {
-        textArea.setText("Модель аналогична модели колебаний. " +
-                "\nВыведенная из равновесного состояния система стремится к равновесию со скоростями а1 и а2." +
-                "\nРавновесное состояние - значение зарплаты и занятости, которые устраивают рабочих и работодателя");
-        textArea.setEditable(false);
+        eventsTextArea.setEditable(false);
     }
 
     private void initButtonActions() {
@@ -156,6 +150,9 @@ public class MathModelController {
         lineChart.titleProperty().bind(mI18N.createStringBinding("linechart.title"));
         xAxis.labelProperty().bind(mI18N.createStringBinding("linechart.xaxis"));
         yAxis.labelProperty().bind(mI18N.createStringBinding("linechart.yaxis"));
+        // События
+        eventsHeader.textProperty().bind(mI18N.createStringBinding("events.header"));
+        eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.text"));
         // Кнопки
         localeButton.textProperty().bind(mI18N.createStringBinding("button.change.lang"));
         // Подсказки
@@ -187,7 +184,7 @@ public class MathModelController {
     }
 
     @FXML
-    private JFXTextArea textArea;
+    private JFXTextArea eventsTextArea;
     @FXML
     private JFXButton exampleButton1;
     @FXML
@@ -195,6 +192,8 @@ public class MathModelController {
     @FXML
     private JFXButton localeButton;
 
+    @FXML
+    private Label eventsHeader;
     @FXML
     private Label headerLabel;
     @FXML

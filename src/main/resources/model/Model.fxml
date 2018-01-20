@@ -227,10 +227,10 @@
                     <JFXMasonryPane maxHeight="100.0" styleClass="card">
                         <VBox>
                             <StackPane styleClass="header" VBox.vgrow="ALWAYS">
-                                <Label text="События"/>
+                                <Label fx:id="eventsHeader"/>
                             </StackPane>
                             <StackPane styleClass="body">
-                                <JFXTextArea fx:id="textArea" prefHeight="70.0" prefWidth="682.0"/>
+                                <JFXTextArea fx:id="eventsTextArea" prefHeight="70.0" prefWidth="682.0"/>
                             </StackPane>
                         </VBox>
                     </JFXMasonryPane>
