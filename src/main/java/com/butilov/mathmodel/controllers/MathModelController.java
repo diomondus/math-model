@@ -103,7 +103,7 @@ public class MathModelController {
         // todo попробовать прикрутить bind  textField.textProperty().bind(Bindings.convert(slider.valueProperty()));
         slider.valueProperty().addListener((o, old, newVal) -> textField.setText(String.valueOf(newVal.intValue())));
         slider.addEventFilter(MouseEvent.MOUSE_RELEASED, event -> initChartData());
-        slider.addEventFilter(KeyEvent.KEY_PRESSED, event -> {
+        slider.addEventFilter(KeyEvent.KEY_RELEASED, event -> {
             if (event.getCode() == KeyCode.RIGHT || event.getCode() == KeyCode.LEFT) {
                 initChartData();
             }

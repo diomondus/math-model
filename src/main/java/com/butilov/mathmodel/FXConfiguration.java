@@ -26,13 +26,6 @@ public class FXConfiguration {
     public Scene getMainScene(MainStageController aMainStageController) // todo сделать по @Qualifier
             throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/MainScene.fxml"));
-        Properties properties = new Properties();
-        Path propFile = Paths.get("application.properties");
-        properties.load(Files.newBufferedReader(propFile));
-
-        properties.stringPropertyNames()
-                .forEach(key -> fxmlLoader.getNamespace().put(key, properties.getProperty(key)));
-
         fxmlLoader.setController(aMainStageController);
         Parent root = fxmlLoader.load();
         return new Scene(root);
