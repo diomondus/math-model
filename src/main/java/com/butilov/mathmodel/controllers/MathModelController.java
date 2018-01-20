@@ -66,7 +66,7 @@ public class MathModelController {
             NrTextField.textProperty().setValue("20000");
             initChartData();
         });
-        mI18N.buttonForKey(localeButton, "button.change.lang");
+        mI18N.propertyForKey(localeButton.textProperty(), "button.change.lang");
         localeButton.setOnAction(event -> mI18N.switchLocale());
     }
 

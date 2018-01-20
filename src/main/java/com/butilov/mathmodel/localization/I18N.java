@@ -4,9 +4,7 @@ import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.Tooltip;
+import javafx.beans.property.StringProperty;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -82,15 +80,7 @@ public final class I18N {
         return Bindings.createStringBinding(func, locale);
     }
 
-    public void labelForValue(Label label, Callable<String> func) {
-        label.textProperty().bind(createStringBinding(func));
-    }
-
-    public void buttonForKey(Button button, final String key, final Object... args) {
-        button.textProperty().bind(createStringBinding(key, args));
-    }
-
-    public void tooltipForKey(Tooltip tooltip, final String key, final Object... args) {
-        tooltip.textProperty().bind(createStringBinding(key, args));
+    public void propertyForKey(StringProperty property, final String key, final Object... args) {
+        property.bind(createStringBinding(key, args));
     }
 }
