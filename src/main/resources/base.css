@@ -8,6 +8,7 @@
 
 .jfx-tab-pane .tab-header-background {
     -fx-background-color: mediumaquamarine;
+    -fx-font-size: 15pt;
 }
 
 .card {
@@ -17,6 +18,7 @@
 .card .body {
     -fx-background-radius: 0 0 5px 5px;
     -fx-background-color: rgb(255, 255, 255);
+    -fx-font-size: 10pt;
     -fx-padding: 14.0px;
 }
 
@@ -29,10 +31,12 @@
     -fx-background-radius: 5 5 0 0;
     -fx-background-color: mediumaquamarine;
     -fx-max-height: 35px;
+    -fx-font-size: 12pt;
 }
 
 .action-button {
     -fx-background-color: mediumaquamarine;
+    -fx-font-size: 10pt;
 }
 
 .tab-about-icon {
@@ -65,6 +69,7 @@
     -fx-background-radius: 5 5 0 0;
     -fx-background-color: mediumaquamarine;
     -fx-pref-height: 35px;
+    -fx-font-size: 12pt;
 }
 
 .chart-content {
