@@ -1,5 +1,6 @@
 package com.butilov.mathmodel.localization;
 
+import com.jfoenix.controls.JFXButton;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
@@ -50,6 +51,12 @@ public final class I18N {
         Locale.setDefault(locale);
     }
 
+    public void switchLocale() {
+        Locale newLocale = getLocale().equals(LOCALE_RU) ? LOCALE_EN : LOCALE_RU;
+        localeProperty().set(newLocale);
+        Locale.setDefault(newLocale);
+    }
+
     public ObjectProperty<Locale> localeProperty() {
         return locale;
     }
@@ -76,21 +83,15 @@ public final class I18N {
         return Bindings.createStringBinding(func, locale);
     }
 
-    public Label labelForValue(Callable<String> func) {
-        Label label = new Label();
+    public void labelForValue(Label label, Callable<String> func) {
         label.textProperty().bind(createStringBinding(func));
-        return label;
     }
 
-    public Button buttonForKey(final String key, final Object... args) {
-        Button button = new Button();
+    public void buttonForKey(Button button, final String key, final Object... args) {
         button.textProperty().bind(createStringBinding(key, args));
-        return button;
     }
 
-    public Tooltip tooltipForKey(final String key, final Object... args) {
-        Tooltip tooltip = new Tooltip();
+    public void tooltipForKey(Tooltip tooltip, final String key, final Object... args) {
         tooltip.textProperty().bind(createStringBinding(key, args));
-        return tooltip;
     }
 }
