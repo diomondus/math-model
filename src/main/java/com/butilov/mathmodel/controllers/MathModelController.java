@@ -146,6 +146,7 @@ public class MathModelController {
     }
 
     private void initText() {
+        parametersHeader.textProperty().bind(mI18N.createStringBinding("parameters.header"));
         // График
         lineChart.titleProperty().bind(mI18N.createStringBinding("linechart.title"));
         xAxis.labelProperty().bind(mI18N.createStringBinding("linechart.xaxis"));
@@ -197,7 +198,7 @@ public class MathModelController {
     @FXML
     private Label eventsHeader;
     @FXML
-    private Label headerLabel;
+    private Label parametersHeader;
     @FXML
     private Label a1Label;
     @FXML

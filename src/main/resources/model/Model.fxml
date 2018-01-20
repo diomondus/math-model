@@ -17,7 +17,7 @@
             <JFXMasonryPane prefWidth="250.0">
                 <VBox styleClass="card">
                     <StackPane styleClass="header" VBox.vgrow="ALWAYS">
-                        <Label fx:id="headerLabel" text="Параметры"/>
+                        <Label fx:id="parametersHeader"/>
                     </StackPane>
                     <VBox styleClass="body">
                         <HBox>
