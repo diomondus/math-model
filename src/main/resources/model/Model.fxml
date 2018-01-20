@@ -219,7 +219,7 @@
                             </StackPane.margin>
                         </LineChart>
                         <BorderPane.margin>
-                            <Insets bottom="15.0" left="5"/>
+                            <Insets bottom="10.0" right="5"/>
                         </BorderPane.margin>
                     </StackPane>
                 </center>
@@ -233,6 +233,9 @@
                                 <JFXTextArea fx:id="eventsTextArea" prefHeight="70.0" prefWidth="682.0"/>
                             </StackPane>
                         </VBox>
+                        <BorderPane.margin>
+                            <Insets bottom="-10.0" left="-5"/>
+                        </BorderPane.margin>
                     </JFXMasonryPane>
                 </bottom>
             </BorderPane>
