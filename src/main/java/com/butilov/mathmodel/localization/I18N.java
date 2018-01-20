@@ -1,6 +1,5 @@
 package com.butilov.mathmodel.localization;
 
-import com.jfoenix.controls.JFXButton;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
