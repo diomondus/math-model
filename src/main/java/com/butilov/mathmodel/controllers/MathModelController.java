@@ -152,12 +152,13 @@ public class MathModelController {
     }
 
     private void initText() {
-        mI18N.propertyForKey(lineChart.titleProperty(), "linechart.title");
-
-        mI18N.propertyForKey(xAxis.labelProperty(), "linechart.xaxis");
-        mI18N.propertyForKey(yAxis.labelProperty(), "linechart.yaxis");
-        mI18N.propertyForKey(localeButton.textProperty(), "button.change.lang");
-
+        // График
+        lineChart.titleProperty().bind(mI18N.createStringBinding("linechart.title"));
+        xAxis.labelProperty().bind(mI18N.createStringBinding("linechart.xaxis"));
+        yAxis.labelProperty().bind(mI18N.createStringBinding("linechart.yaxis"));
+        // Кнопки
+        localeButton.textProperty().bind(mI18N.createStringBinding("button.change.lang"));
+        // Подсказки
         initTooltips();
     }
 
@@ -179,8 +180,8 @@ public class MathModelController {
             nData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getN()[i]));
             pData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getP()[i]));
         });
-        mI18N.propertyForKey(pData.nameProperty(),"linechart.pdata");
-        mI18N.propertyForKey(nData.nameProperty(),"linechart.ndata");
+        pData.nameProperty().bind(mI18N.createStringBinding("linechart.pdata"));
+        nData.nameProperty().bind(mI18N.createStringBinding("linechart.ndata"));
         lineChart.getData().add(pData);
         lineChart.getData().add(nData);
     }
