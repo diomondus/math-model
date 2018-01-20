@@ -66,18 +66,19 @@ public class MathModelController {
     }
 
     private void initTooltips() {
-        initTooltip(a1TextField, a1Label, "Коэффициент изменения зарплаты");
-        initTooltip(a2TextField, a2Label, "Коэффициент изменения занятых");
-        initTooltip(P0TextField, P0Label, "Значение зарплаты в начале исследования");
-        initTooltip(N0TextField, N0Label, "Значение числа занятых мест в начале исследования");
-        initTooltip(PrTextField, PrLabel, "Значение зарплаты в начале исследования (равновесие)");
-        initTooltip(NrTextField, NrLabel, "Значение числа занятых мест в начале исследования (равновесие)");
-        initTooltip(TTextField, TLabel, "Время наблюдения");
-        initTooltip(NTextField, NLabel, "Количество разбиений по времени");
+        initTooltip(a1TextField, a1Label, "tooltip.a1");
+        initTooltip(a2TextField, a2Label, "tooltip.a2");
+        initTooltip(P0TextField, P0Label, "tooltip.P0");
+        initTooltip(N0TextField, N0Label, "tooltip.N0");
+        initTooltip(PrTextField, PrLabel, "tooltip.Pr");
+        initTooltip(NrTextField, NrLabel, "tooltip.Nr");
+        initTooltip(TTextField, TLabel, "tooltip.T");
+        initTooltip(NTextField, NLabel, "tooltip.N");
     }
 
-    private void initTooltip(TextField textField, Label label, String tooltipString) {
-        Tooltip tooltip = new Tooltip(tooltipString);
+    private void initTooltip(TextField textField, Label label, String tooltipStringKey) {
+        Tooltip tooltip = new Tooltip();
+        tooltip.textProperty().bind(mI18N.createStringBinding(tooltipStringKey));
         textField.setTooltip(tooltip);
         label.setTooltip(tooltip);
     }
