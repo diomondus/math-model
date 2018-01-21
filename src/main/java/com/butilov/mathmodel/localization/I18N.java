@@ -1,9 +1,11 @@
 package com.butilov.mathmodel.localization;
 
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.ObjectBinding;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
+import javafx.scene.image.Image;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -21,24 +23,24 @@ public final class I18N {
 
     private final ObjectProperty<Locale> locale;
 
-    public final Locale LOCALE_RU = new Locale("ru", "RU");
-    public final Locale LOCALE_EN = Locale.ENGLISH;
+    private final Locale LOCALE_RU = new Locale("ru", "RU");
+    private final Locale LOCALE_EN = Locale.ENGLISH;
 
     public I18N() {
         locale = new SimpleObjectProperty<>(getDefaultLocale());
         locale.addListener((observable, oldValue, newValue) -> Locale.setDefault(newValue));
     }
 
-    public List<Locale> getSupportedLocales() {
+    private List<Locale> getSupportedLocales() {
         return new ArrayList<>(Arrays.asList(LOCALE_EN, LOCALE_RU));
     }
 
-    public Locale getDefaultLocale() {
+    private Locale getDefaultLocale() {
         Locale sysDefault = Locale.getDefault();
         return getSupportedLocales().contains(sysDefault) ? sysDefault : LOCALE_RU;
     }
 
-    public Locale getLocale() {
+    private Locale getLocale() {
         return locale.get();
     }
 
@@ -53,11 +55,11 @@ public final class I18N {
         Locale.setDefault(newLocale);
     }
 
-    public ObjectProperty<Locale> localeProperty() {
+    private ObjectProperty<Locale> localeProperty() {
         return locale;
     }
 
-    public String get(final String key, final Object... args) {
+    private String get(final String key, final Object... args) {
         Properties properties = new Properties();
         Path propFile = Paths.get("locale_" + getLocale().getLanguage() + ".properties");
         String string = "";
@@ -75,5 +77,14 @@ public final class I18N {
 
     public StringBinding createStringBinding(Callable<String> func) {
         return Bindings.createStringBinding(func, locale);
+    }
+
+    private Image getImage() {
+        Path file = Paths.get("src/main/resources/theory/theory_" + getLocale().getLanguage() + ".png");
+        return new Image(file.toUri().toString());
+    }
+
+    public ObjectBinding<Image> createImageBinding() {
+        return Bindings.createObjectBinding(this::getImage, locale);
     }
 }
