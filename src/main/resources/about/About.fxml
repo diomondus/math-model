@@ -17,25 +17,22 @@
                     <StackPane styleClass="header" VBox.vgrow="ALWAYS">
                         <Label fx:id="aboutTheoryHeader"/>
                     </StackPane>
-                    <StackPane prefHeight="160.0" prefWidth="550.0" styleClass="body">
+                    <StackPane prefHeight="100.0" prefWidth="680.0" styleClass="body">
                         <JFXTextArea fx:id="aboutTheoryTextArea"/>
                     </StackPane>
                 </VBox>
-
                 <VBox styleClass="card">
                     <StackPane styleClass="header" VBox.vgrow="ALWAYS">
                         <Label fx:id="aboutModelHeader"/>
                     </StackPane>
-                    <StackPane prefHeight="160.0" prefWidth="450.0" styleClass="body">
+                    <StackPane prefHeight="550.0" prefWidth="680.0" styleClass="body">
                         <JFXTextArea fx:id="aboutModelTextArea"/>
                     </StackPane>
                 </VBox>
                 <BorderPane.margin>
-                    <Insets left="10.0" top="10.0"/>
+                    <Insets left="120.0" top="10.0" bottom="-10"/>
                 </BorderPane.margin>
-
             </JFXMasonryPane>
         </center>
-
     </BorderPane>
 </AnchorPane>
