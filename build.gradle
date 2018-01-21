@@ -26,3 +26,19 @@ dependencies {
 
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+task buildWithDependencies(type: Jar) {
+    manifest.attributes("Main-Class": "com.butilov.mathmodel.FXApplication");
+    destinationDir file(rootProject.projectDir.path + '/deploy')
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task copyResurces(type: Copy) {
+    from rootProject.projectDir.path
+    into rootProject.projectDir.path + '/deploy'
+    include 'locale_ru.properties'
+    include 'locale_en.properties'
+}
+
+buildWithDependencies.finalizedBy(copyResurces);
