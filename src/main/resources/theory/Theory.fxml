@@ -12,13 +12,13 @@
             <URL value="@../base.css"/>
         </stylesheets>
         <center>
-            <JFXMasonryPane prefWidth="640">
+            <JFXMasonryPane prefWidth="670">
                 <VBox styleClass="card">
                     <StackPane styleClass="header" VBox.vgrow="ALWAYS">
                         <Label fx:id="theoryHeader"/>
                     </StackPane>
                     <VBox styleClass="body">
-                        <ImageView fx:id="imageView" fitHeight="710" pickOnBounds="true" preserveRatio="true"/>
+                        <ImageView fx:id="imageView" fitHeight="670" pickOnBounds="true" preserveRatio="true"/>
                     </VBox>
                 </VBox>
                 <BorderPane.margin>
