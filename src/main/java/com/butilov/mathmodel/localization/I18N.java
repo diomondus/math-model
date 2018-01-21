@@ -59,7 +59,7 @@ public final class I18N {
 
     public String get(final String key, final Object... args) {
         Properties properties = new Properties();
-        Path propFile = Paths.get("src/main/resources/locale_" + getLocale().getLanguage() + ".properties");
+        Path propFile = Paths.get("locale_" + getLocale().getLanguage() + ".properties");
         String string = "";
         try {
             properties.load(Files.newBufferedReader(propFile));
