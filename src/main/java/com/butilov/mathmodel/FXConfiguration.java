@@ -1,5 +1,6 @@
 package com.butilov.mathmodel;
 
+import com.butilov.mathmodel.controllers.AboutController;
 import com.butilov.mathmodel.controllers.MathModelController;
 import com.butilov.mathmodel.controllers.TheoryController;
 import javafx.fxml.FXMLLoader;
@@ -11,10 +12,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.util.Properties;
 
 /**
  * Created by Dmitry Butilov
@@ -51,9 +48,10 @@ public class FXConfiguration {
 
     @Bean
     @Qualifier("aboutAnchorPane")
-    public Node aboutPane()
+    public Node aboutPane(AboutController aAboutController)
             throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/about/About.fxml"));
+        fxmlLoader.setController(aAboutController);
         return fxmlLoader.load();
     }
 }
