@@ -3,7 +3,6 @@
 <?import com.jfoenix.controls.JFXMasonryPane?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
@@ -13,15 +12,13 @@
             <URL value="@../base.css"/>
         </stylesheets>
         <center>
-            <JFXMasonryPane prefWidth="640">
+            <JFXMasonryPane prefWidth="670">
                 <VBox styleClass="card">
                     <StackPane styleClass="header" VBox.vgrow="ALWAYS">
                         <Label fx:id="theoryHeader"/>
                     </StackPane>
                     <VBox styleClass="body">
-                        <ImageView fitHeight="710" pickOnBounds="true" preserveRatio="true">
-                            <Image url="/theory/theory.png" backgroundLoading="true"/>
-                        </ImageView>
+                        <ImageView fx:id="imageView" fitHeight="670" pickOnBounds="true" preserveRatio="true"/>
                     </VBox>
                 </VBox>
                 <BorderPane.margin>
