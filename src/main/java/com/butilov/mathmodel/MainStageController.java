@@ -56,10 +56,6 @@ public class MainStageController {
         aboutAnchorPane.getChildren().add(mAboutPane);
     }
 
-    public void onApplicationExit() {
-        // todo если понадобится
-    }
-
     @FXML
     private AnchorPane modelAnchorPane;
     @FXML
