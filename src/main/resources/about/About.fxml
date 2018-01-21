@@ -7,26 +7,35 @@
 <?import javafx.scene.layout.*?>
 <?import java.net.URL?>
 <AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
-    <BorderPane minWidth="840">
+    <BorderPane minHeight="640" minWidth="840">
         <stylesheets>
             <URL value="@../base.css"/>
         </stylesheets>
         <center>
-            <JFXMasonryPane minWidth="840">
+            <JFXMasonryPane minWidth="640">
                 <VBox styleClass="card">
                     <StackPane styleClass="header" VBox.vgrow="ALWAYS">
-                        <Label text="aboutHeader"/>
+                        <Label fx:id="aboutTheoryHeader"/>
                     </StackPane>
                     <StackPane prefHeight="160.0" prefWidth="550.0" styleClass="body">
-                        <JFXTextArea
-                                text="Вкладка Теоретический материал позволяет ознакомиться с теоретическими основами, использованными при реализации данной модели.">
-                        </JFXTextArea>
+                        <JFXTextArea fx:id="aboutTheoryTextArea"/>
+                    </StackPane>
+                </VBox>
+
+                <VBox styleClass="card">
+                    <StackPane styleClass="header" VBox.vgrow="ALWAYS">
+                        <Label fx:id="aboutModelHeader"/>
+                    </StackPane>
+                    <StackPane prefHeight="160.0" prefWidth="450.0" styleClass="body">
+                        <JFXTextArea fx:id="aboutModelTextArea"/>
                     </StackPane>
                 </VBox>
                 <BorderPane.margin>
-                    <Insets left="10.0" top="10.0" bottom="10"/>
+                    <Insets left="10.0" top="10.0"/>
                 </BorderPane.margin>
+
             </JFXMasonryPane>
         </center>
+
     </BorderPane>
 </AnchorPane>
