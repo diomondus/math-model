@@ -1,38 +1,57 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXDrawer?>
+<?import com.jfoenix.controls.JFXHamburger?>
 <?import com.jfoenix.controls.JFXTabPane?>
 <?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
-<?import javafx.scene.control.Tab?>
-<?import javafx.scene.layout.*?>
 <?import java.net.URL?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="800.0" prefWidth="1000.0">
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+<AnchorPane prefHeight="800.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
     <BorderPane>
         <stylesheets>
-            <URL value="@base.css"/>
+            <URL value="@base.css" />
         </stylesheets>
-        <center>
+        <right>
             <JFXTabPane>
                 <Tab fx:id="modelTab">
                     <graphic>
-                        <MaterialIconView size="2em" styleClass="tab-model-icon"/>
+                        <MaterialIconView size="2em" styleClass="tab-model-icon" />
                     </graphic>
-                    <AnchorPane fx:id="modelAnchorPane"/>
+                    <AnchorPane fx:id="modelAnchorPane">
+                  <children>
+                         <VBox layoutX="-25.0" layoutY="-143.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="795.0" prefWidth="48.0" styleClass="card-unpadded">
+                             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                                 <Image url="@theory/theory_ru.png" />
+                             </ImageView>
+                         </VBox>
+                  </children></AnchorPane>
                 </Tab>
                 <Tab fx:id="theoryTab">
                     <graphic>
-                        <MaterialIconView size="1.8em" styleClass="tab-theory-icon"/>
+                        <MaterialIconView size="1.8em" styleClass="tab-theory-icon" />
                     </graphic>
-                    <AnchorPane fx:id="theoryAnchorPane"/>
+                    <AnchorPane fx:id="theoryAnchorPane" />
                 </Tab>
                 <Tab fx:id="aboutTab">
                     <graphic>
-                        <MaterialIconView size="1.8em" styleClass="tab-about-icon"/>
+                        <MaterialIconView size="1.8em" styleClass="tab-about-icon" />
                     </graphic>
-                    <AnchorPane fx:id="aboutAnchorPane"/>
+                    <AnchorPane fx:id="aboutAnchorPane" />
                 </Tab>
             </JFXTabPane>
+        </right>
+        <center>
+            <JFXHamburger fx:id="hamburger" minWidth="50.0" prefHeight="201.0" prefWidth="0.0" styleClass="jfx-hamburger" BorderPane.alignment="TOP_CENTER" />
         </center>
+      <left>
+         <JFXDrawer fx:id="drawer" defaultDrawerSize="300.0" prefHeight="688.0" prefWidth="38.0" BorderPane.alignment="CENTER" />
+      </left>
+
     </BorderPane>
 </AnchorPane>

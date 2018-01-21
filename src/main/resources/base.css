@@ -11,6 +11,19 @@
     -fx-font-size: 15pt;
 }
 
+.jfx-hamburger{
+    -fx-spacing: 4;
+    -fx-cursor: hand;
+    -fx-padding: 3px;
+}
+
+.card-unpadded {
+    -fx-background-color: rgb(255.0, 255.0, 255.0);
+    -fx-background-radius: 4.0;
+    -fx-effect: dropshadow(gaussian, rgb(0.0, 0.0, 0.0, 0.15), 6.0, 0.7, 0.0, 1.5);
+    -fx-padding: 0 0 0 0;
+}
+
 .card {
     -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
 }
