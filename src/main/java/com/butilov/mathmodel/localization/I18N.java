@@ -80,7 +80,7 @@ public final class I18N {
     }
 
     private Image getImage() {
-        Path file = Paths.get("src/main/resources/theory/theory_" + getLocale().getLanguage() + ".png");
+        Path file = Paths.get("theory_" + getLocale().getLanguage() + ".png");
         return new Image(file.toUri().toString());
     }
 

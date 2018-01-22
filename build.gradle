@@ -39,6 +39,8 @@ task copyResurces(type: Copy) {
     into rootProject.projectDir.path + '/deploy'
     include 'locale_ru.properties'
     include 'locale_en.properties'
+    include 'theory_ru.png'
+    include 'theory_en.png'
 }
 
 buildWithDependencies.finalizedBy(copyResurces);
