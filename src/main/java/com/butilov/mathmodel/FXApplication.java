@@ -41,11 +41,5 @@ public class FXApplication
         primaryStage.show();
         primaryStage.titleProperty().bind(mI18N.createStringBinding("window.title"));
     }
-
-    @Override
-    public void stop()
-            throws Exception {
-        mMainStageController.onApplicationExit();
-    }
 }
 
