@@ -1,0 +1,1 @@
+java -jar math-model-1.0.jar

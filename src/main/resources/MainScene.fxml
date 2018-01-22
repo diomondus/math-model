@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import de.jensd.fx.glyphs.materialicons.MaterialIconView?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            prefHeight="800.0" prefWidth="1000.0">
+    <BorderPane>
+        <stylesheets>
+            <URL value="@base.css"/>
+        </stylesheets>
+        <center>
+            <JFXTabPane>
+                <Tab fx:id="modelTab">
+                    <graphic>
+                        <MaterialIconView size="2em" styleClass="tab-model-icon"/>
+                    </graphic>
+                    <AnchorPane fx:id="modelAnchorPane"/>
+                </Tab>
+                <Tab fx:id="theoryTab">
+                    <graphic>
+                        <MaterialIconView size="1.8em" styleClass="tab-theory-icon"/>
+                    </graphic>
+                    <AnchorPane fx:id="theoryAnchorPane"/>
+                </Tab>
+                <Tab fx:id="aboutTab">
+                    <graphic>
+                        <MaterialIconView size="1.8em" styleClass="tab-about-icon"/>
+                    </graphic>
+                    <AnchorPane fx:id="aboutAnchorPane"/>
+                </Tab>
+            </JFXTabPane>
+        </center>
+    </BorderPane>
+</AnchorPane>

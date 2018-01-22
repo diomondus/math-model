@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/modules/math-model.iml" filepath="$PROJECT_DIR$/.idea/modules/math-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/math-model.iml" filepath="$PROJECT_DIR$/math-model.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/math-model_main.iml" filepath="$PROJECT_DIR$/.idea/modules/math-model_main.iml" group="math-model" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/math-model_test.iml" filepath="$PROJECT_DIR$/.idea/modules/math-model_test.iml" group="math-model" />
     </modules>

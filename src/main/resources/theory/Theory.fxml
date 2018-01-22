@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXMasonryPane?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.121" xmlns:fx="http://javafx.com/fxml/1">
+    <BorderPane>
+        <stylesheets>
+            <URL value="@../base.css"/>
+        </stylesheets>
+        <center>
+            <JFXMasonryPane prefWidth="670">
+                <VBox styleClass="card">
+                    <StackPane styleClass="header" VBox.vgrow="ALWAYS">
+                        <Label fx:id="theoryHeader"/>
+                    </StackPane>
+                    <VBox styleClass="body">
+                        <ImageView fx:id="imageView" fitHeight="670" pickOnBounds="true" preserveRatio="true"/>
+                    </VBox>
+                </VBox>
+                <BorderPane.margin>
+                    <Insets left="170.0" top="10.0" bottom="10"/>
+                </BorderPane.margin>
+            </JFXMasonryPane>
+        </center>
+    </BorderPane>
+</AnchorPane>

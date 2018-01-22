@@ -7,8 +7,38 @@ sourceCompatibility = 1.8
 
 repositories {
     mavenCentral()
+    maven {
+        url 'https://artifacts.alfresco.com/nexus/content/repositories/public/'
+    }
+    maven {
+        url 'https://repo.spring.io/libs-milestone'
+    }
 }
 
 dependencies {
+    compile group: 'org.springframework', name: 'spring-core', version: '5.0.0.M5'
+    compile group: 'org.springframework', name: 'spring-context', version: '5.0.0.M5'
+
+    compile 'com.jfoenix:jfoenix:1.9.0'
+    compile 'de.jensd:fontawesomefx-materialicons:2.2.0-5'
+
+    compileOnly group: 'org.projectlombok', name: 'lombok', version: '1.16.16'
+
     testCompile group: 'junit', name: 'junit', version: '4.12'
 }
+
+task buildWithDependencies(type: Jar) {
+    manifest.attributes("Main-Class": "com.butilov.mathmodel.FXApplication");
+    destinationDir file(rootProject.projectDir.path + '/deploy')
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+task copyResurces(type: Copy) {
+    from rootProject.projectDir.path
+    into rootProject.projectDir.path + '/deploy'
+    include 'locale_ru.properties'
+    include 'locale_en.properties'
+}
+
+buildWithDependencies.finalizedBy(copyResurces);

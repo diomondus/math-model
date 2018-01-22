@@ -1,0 +1,82 @@
+.glyph-icon {
+    -fx-font-family: "Material Design Icons";
+}
+
+.jfx-tab-pane .headers-region {
+    -fx-background-color: mediumaquamarine;
+}
+
+.jfx-tab-pane .tab-header-background {
+    -fx-background-color: mediumaquamarine;
+    -fx-font-size: 15pt;
+}
+
+.card {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
+}
+
+.card .body {
+    -fx-background-radius: 0 0 5px 5px;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-font-size: 10pt;
+    -fx-padding: 14.0px;
+}
+
+.card .slider {
+    -fx-background-color: white;
+    -fx-padding: 5.0px;
+}
+
+.card .header {
+    -fx-background-radius: 5 5 0 0;
+    -fx-background-color: mediumaquamarine;
+    -fx-max-height: 35px;
+    -fx-font-size: 12pt;
+}
+
+.action-button {
+    -fx-background-color: mediumaquamarine;
+    -fx-font-size: 10pt;
+}
+
+.tab-about-icon {
+    -glyph-name: "INFO_OUTLINE";
+    -fx-fill: #464547;
+}
+
+.tab-theory-icon {
+    -glyph-name: "BOOK";
+    -fx-fill: #464547;
+}
+
+.tab-model-icon {
+    -glyph-name: "MULTILINE_CHART";
+    -fx-fill: #464547;
+}
+
+.bottom-keypad {
+    -fx-padding: 10.0px;
+}
+
+.chart {
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.26), 10, 0.12, -1, 2);
+    -fx-background-radius: 5px 5px 5px 5px;
+    -fx-background-color: rgb(255, 255, 255);
+    -fx-padding: 0.0px;
+}
+
+.chart-title {
+    -fx-background-radius: 5 5 0 0;
+    -fx-background-color: mediumaquamarine;
+    -fx-pref-height: 35px;
+    -fx-font-size: 12pt;
+}
+
+.chart-content {
+    -fx-padding: 15px;
+}
+
+.chart-legend {
+    -fx-background-color: transparent;
+    -fx-padding: 10px;
+}
