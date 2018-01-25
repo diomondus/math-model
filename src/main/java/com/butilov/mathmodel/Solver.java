@@ -24,6 +24,9 @@ public class Solver {
             N = 1;
         } else {
             h /= N;
+            if (N > 1000) {
+                N = 1000;
+            }
         }
         final double sqrtA1 = Math.sqrt(a1);
         final double sqrtA2 = Math.sqrt(a2);
@@ -32,7 +35,7 @@ public class Solver {
         final double deltaNMULa2DIVa1 = (nr - n0) * a2DIVa1;
         final double deltaP = p0 - pr;
 
-        for (int i = 1; i < N; i++) {
+        for (int i = 1; i <= N; i++) {
             t[i] = i * h;
 
             double sin = Math.sin(a1MULa2 * t[i]);
