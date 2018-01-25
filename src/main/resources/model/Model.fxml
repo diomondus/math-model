@@ -190,6 +190,11 @@
                                 <Insets bottom="5.0" top="10.0"/>
                             </VBox.margin>
                         </JFXButton>
+                        <JFXButton fx:id="exampleButton3" styleClass="action-button">
+                            <VBox.margin>
+                                <Insets bottom="5.0" top="10.0"/>
+                            </VBox.margin>
+                        </JFXButton>
                         <JFXButton fx:id="localeButton" styleClass="action-button">
                             <VBox.margin>
                                 <Insets top="10.0"/>
