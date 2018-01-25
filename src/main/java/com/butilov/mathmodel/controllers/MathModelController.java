@@ -49,19 +49,39 @@ public class MathModelController {
 
     private void initButtonActions() {
         exampleButton1.setOnAction(e -> {
+            a1TextField.textProperty().setValue("3");
+            a2TextField.textProperty().setValue("3");
             P0TextField.textProperty().setValue("60000");
             N0TextField.textProperty().setValue("25000");
             PrTextField.textProperty().setValue("60000");
             NrTextField.textProperty().setValue("25000");
+            TTextField.textProperty().setValue("11");
+            NTextField.textProperty().setValue("250");
             eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.example1"));
             initChartData();
         });
         exampleButton2.setOnAction(e -> {
+            a1TextField.textProperty().setValue("3");
+            a2TextField.textProperty().setValue("3");
             P0TextField.textProperty().setValue("50000");
             N0TextField.textProperty().setValue("20000");
             PrTextField.textProperty().setValue("40000");
             NrTextField.textProperty().setValue("20000");
+            TTextField.textProperty().setValue("11");
+            NTextField.textProperty().setValue("250");
             eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.example2"));
+            initChartData();
+        });
+        exampleButton3.setOnAction(e -> {
+            a1TextField.textProperty().setValue("2");
+            a2TextField.textProperty().setValue("2");
+            N0TextField.textProperty().setValue("6000");
+            NrTextField.textProperty().setValue("6000");
+            P0TextField.textProperty().setValue("90000");
+            PrTextField.textProperty().setValue("87000");
+            TTextField.textProperty().setValue("6");
+            NTextField.textProperty().setValue("12");
+            eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.example3"));
             initChartData();
         });
         localeButton.setOnAction(event -> mI18N.switchLocale());
@@ -178,6 +198,7 @@ public class MathModelController {
         // Кнопки
         exampleButton1.textProperty().bind(mI18N.createStringBinding("button.example1"));
         exampleButton2.textProperty().bind(mI18N.createStringBinding("button.example2"));
+        exampleButton3.textProperty().bind(mI18N.createStringBinding("button.example3"));
         localeButton.textProperty().bind(mI18N.createStringBinding("button.change.lang"));
         // Подсказки
         initTooltips();
@@ -210,6 +231,8 @@ public class MathModelController {
     private JFXButton exampleButton1;
     @FXML
     private JFXButton exampleButton2;
+    @FXML
+    private JFXButton exampleButton3;
     @FXML
     private JFXButton localeButton;
 
