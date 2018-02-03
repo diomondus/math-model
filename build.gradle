@@ -17,11 +17,17 @@ buildscript {
 apply plugin: "edu.sc.seis.macAppBundle"
 
 macAppBundle {
-    mainClassName = "com.butilov.mathmodel.FXApplication"
-//    icon = "myIcon.icns"
     bundleJRE = true
+    mainClassName = "com.butilov.mathmodel.FXApplication"
+    appName = "Math Model"
+    icon = "icon.icns"
+    volumeName = "Install Math Model"
+//    backgroundImage = "background.png"
+//    backgroundImageWidth = "375";
+//    backgroundImageHeight = "750";
+//    appFolderX = "360"
+//    appFolderY = "205";
 //    javaProperties.put("apple.laf.useScreenMenuBar", "true")
-//    backgroundImage = "doc/macbackground.png"
 }
 
 sourceCompatibility = 1.8
