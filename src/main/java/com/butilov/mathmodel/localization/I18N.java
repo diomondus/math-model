@@ -8,7 +8,6 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
 import java.io.IOException;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.Reader;
 import java.net.URL;
@@ -65,9 +64,7 @@ public final class I18N {
         ClassLoader classLoader = getClass().getClassLoader();
         URL url = classLoader.getResource("locale_" + getLocale().getLanguage() + ".properties");
         Properties properties = new Properties();
-        try {
-            InputStream in = url.openStream();
-            Reader reader = new InputStreamReader(in, Charset.forName("utf-8"));
+        try (Reader reader = new InputStreamReader(url.openStream(), Charset.forName("utf-8"))) {
             properties.load(reader);
         } catch (IOException ignored) {
         }
