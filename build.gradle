@@ -11,9 +11,18 @@ buildscript {
     }
     dependencies {
         classpath "gradle.plugin.edu.sc.seis:macAppBundle:2.2.1"
+        classpath "gradle.plugin.de.inetsoftware:SetupBuilder:3.4.3"
     }
 }
 
+setupBuilder {
+    vendor = 'i-net software'
+    application = "SetupBuilder Plugin"
+    appIdentifier = "SetupBuilder"
+    bundleJre = 1.8
+}
+
+apply plugin: "de.inetsoftware.setupbuilder"
 apply plugin: "edu.sc.seis.macAppBundle"
 
 macAppBundle {
