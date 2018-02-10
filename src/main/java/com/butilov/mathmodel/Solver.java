@@ -19,19 +19,30 @@ public class Solver {
         p[0] = p0;
         n[0] = n0;
 
-        double h = T / N;
-        double b = Math.sqrt(a1);
-        double c = Math.sqrt(a2);
-        double a = b * c;
+        double h = T;
+        if (N < 1) {
+            N = 1;
+        } else {
+            h /= N;
+            if (N > 1000) {
+                N = 1000;
+            }
+        }
+        final double sqrtA1 = Math.sqrt(a1);
+        final double sqrtA2 = Math.sqrt(a2);
+        final double a1MULa2 = sqrtA1 * sqrtA2;
+        final double a2DIVa1 = sqrtA2 / sqrtA1;
+        final double deltaNMULa2DIVa1 = (nr - n0) * a2DIVa1;
+        final double deltaP = p0 - pr;
 
-        for (int i = 1; i < N; i++) {
+        for (int i = 1; i <= N; i++) {
             t[i] = i * h;
-            p[i] = (Math.sin(a * t[i]) * c * (nr - n0)) / b;
-            p[i] += Math.cos(a * t[i]) * (-pr + p0) + pr;
 
-            n[i] = Math.sin(a * t[i]) * b * (p0 - pr) + nr * c;
-            n[i] -= Math.cos(a * t[i]) * c * (nr - n0);
-            n[i] = n[i] / b;
+            double sin = Math.sin(a1MULa2 * t[i]);
+            double cos = Math.cos(a1MULa2 * t[i]);
+
+            p[i] = (sin * deltaNMULa2DIVa1) + (cos * deltaP) + pr;
+            n[i] = (sin * deltaP) + (nr * a2DIVa1) - cos * deltaNMULa2DIVa1;
         }
     }
 }

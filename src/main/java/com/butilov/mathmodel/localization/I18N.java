@@ -8,9 +8,10 @@ import javafx.beans.property.SimpleObjectProperty;
 import javafx.scene.image.Image;
 
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.InputStreamReader;
+import java.io.Reader;
+import java.net.URL;
+import java.nio.charset.Charset;
 import java.text.MessageFormat;
 import java.util.*;
 import java.util.concurrent.Callable;
@@ -60,14 +61,14 @@ public final class I18N {
     }
 
     private String get(final String key, final Object... args) {
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL url = classLoader.getResource("locale_" + getLocale().getLanguage() + ".properties");
         Properties properties = new Properties();
-        Path propFile = Paths.get("locale_" + getLocale().getLanguage() + ".properties");
-        String string = "";
-        try {
-            properties.load(Files.newBufferedReader(propFile));
-            string = properties.getProperty(key);
+        try (Reader reader = new InputStreamReader(url.openStream(), Charset.forName("utf-8"))) {
+            properties.load(reader);
         } catch (IOException ignored) {
         }
+        String string = properties.getProperty(key);
         return MessageFormat.format(string, args);
     }
 
@@ -80,8 +81,9 @@ public final class I18N {
     }
 
     private Image getImage() {
-        Path file = Paths.get("theory_" + getLocale().getLanguage() + ".png");
-        return new Image(file.toUri().toString());
+        ClassLoader classLoader = getClass().getClassLoader();
+        URL url = classLoader.getResource("theory/theory_" + getLocale().getLanguage() + ".png");
+        return new Image(url.toString());
     }
 
     public ObjectBinding<Image> createImageBinding() {

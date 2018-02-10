@@ -49,19 +49,39 @@ public class MathModelController {
 
     private void initButtonActions() {
         exampleButton1.setOnAction(e -> {
+            a1TextField.textProperty().setValue("3");
+            a2TextField.textProperty().setValue("3");
             P0TextField.textProperty().setValue("60000");
             N0TextField.textProperty().setValue("25000");
             PrTextField.textProperty().setValue("60000");
             NrTextField.textProperty().setValue("25000");
+            TTextField.textProperty().setValue("11");
+            NTextField.textProperty().setValue("250");
             eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.example1"));
             initChartData();
         });
         exampleButton2.setOnAction(e -> {
+            a1TextField.textProperty().setValue("3");
+            a2TextField.textProperty().setValue("3");
             P0TextField.textProperty().setValue("50000");
             N0TextField.textProperty().setValue("20000");
             PrTextField.textProperty().setValue("40000");
             NrTextField.textProperty().setValue("20000");
+            TTextField.textProperty().setValue("11");
+            NTextField.textProperty().setValue("250");
             eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.example2"));
+            initChartData();
+        });
+        exampleButton3.setOnAction(e -> {
+            a1TextField.textProperty().setValue("2");
+            a2TextField.textProperty().setValue("2");
+            N0TextField.textProperty().setValue("6000");
+            NrTextField.textProperty().setValue("6000");
+            P0TextField.textProperty().setValue("90000");
+            PrTextField.textProperty().setValue("87000");
+            TTextField.textProperty().setValue("6");
+            NTextField.textProperty().setValue("12");
+            eventsTextArea.textProperty().bind(mI18N.createStringBinding("events.example3"));
             initChartData();
         });
         localeButton.setOnAction(event -> mI18N.switchLocale());
@@ -86,12 +106,12 @@ public class MathModelController {
     }
 
     private void initSliders() {
-        initSliderControl(a1Slider, a1TextField, 3, 0, 500, "events.inc.a1", "events.dec.a1");
-        initSliderControl(a2Slider, a2TextField, 3, 0, 500, "events.inc.a2", "events.dec.a2");
-        initSliderControl(N0Slider, N0TextField, 40000, 20000, 100000, "events.inc.N0", "events.dec.N0");
-        initSliderControl(NrSlider, NrTextField, 30000, 20000, 100000, "events.inc.Nr", "events.dec.Nr");
-        initSliderControl(P0Slider, P0TextField, 60000, 20000, 100000, "events.inc.P0", "events.dec.P0");
-        initSliderControl(PrSlider, PrTextField, 50000, 20000, 100000, "events.inc.Pr", "events.dec.Pr");
+        initSliderControl(a1Slider, a1TextField, 3, 1, 500, "events.inc.a1", "events.dec.a1");
+        initSliderControl(a2Slider, a2TextField, 3, 1, 500, "events.inc.a2", "events.dec.a2");
+        initSliderControl(N0Slider, N0TextField, 40000, 2000, 150000, "events.inc.N0", "events.dec.N0");
+        initSliderControl(NrSlider, NrTextField, 30000, 2000, 150000, "events.inc.Nr", "events.dec.Nr");
+        initSliderControl(P0Slider, P0TextField, 60000, 20000, 150000, "events.inc.P0", "events.dec.P0");
+        initSliderControl(PrSlider, PrTextField, 50000, 20000, 150000, "events.inc.Pr", "events.dec.Pr");
         initSliderControl(TSlider, TTextField, 11, 0, 500, "events.inc.T", "events.dec.T");
         initSliderControl(NSlider, NTextField, 250, 0, 500, "events.inc.N", "events.dec.N");
     }
@@ -123,11 +143,15 @@ public class MathModelController {
             int value = newValue.isEmpty() ? 0 : Double.valueOf(newValue).intValue();
             if (value >= min && value <= max) {
                 s.setValue(value);
-                if (value > Integer.valueOf(oldValue)) {
-                    eventsTextArea.textProperty().bind(mI18N.createStringBinding(incKey));
-                }
-                if (value < Integer.valueOf(oldValue)) {
-                    eventsTextArea.textProperty().bind(mI18N.createStringBinding(decKey));
+                try {
+                    if (value > Integer.valueOf(oldValue)) {
+                        eventsTextArea.textProperty().bind(mI18N.createStringBinding(incKey));
+                    }
+                    if (value < Integer.valueOf(oldValue)) {
+                        eventsTextArea.textProperty().bind(mI18N.createStringBinding(decKey));
+                    }
+                } catch (NumberFormatException ignored) {
+
                 }
             }
         });
@@ -174,6 +198,7 @@ public class MathModelController {
         // Кнопки
         exampleButton1.textProperty().bind(mI18N.createStringBinding("button.example1"));
         exampleButton2.textProperty().bind(mI18N.createStringBinding("button.example2"));
+        exampleButton3.textProperty().bind(mI18N.createStringBinding("button.example3"));
         localeButton.textProperty().bind(mI18N.createStringBinding("button.change.lang"));
         // Подсказки
         initTooltips();
@@ -188,12 +213,9 @@ public class MathModelController {
         lineChart.getData().clear();
         XYChart.Series<Double, Double> nData = new XYChart.Series<>();
         XYChart.Series<Double, Double> pData = new XYChart.Series<>();
-        if (a1 == 0) {
-            a1 = 0.01; // костыль!
-        }
         mSolver.solveEquations(a1, a2, n0, nr, p0, pr, T, N);
 
-        IntStream.range(1, (int) N).forEach(i -> {
+        IntStream.range(0, (int) N).forEach(i -> {
             nData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getN()[i]));
             pData.getData().add(new XYChart.Data<>(mSolver.getT()[i], mSolver.getP()[i]));
         });
@@ -209,6 +231,8 @@ public class MathModelController {
     private JFXButton exampleButton1;
     @FXML
     private JFXButton exampleButton2;
+    @FXML
+    private JFXButton exampleButton3;
     @FXML
     private JFXButton localeButton;
 

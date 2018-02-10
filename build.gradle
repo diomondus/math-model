@@ -3,6 +3,33 @@ version '1.0'
 
 apply plugin: 'java'
 
+buildscript {
+    repositories {
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath "gradle.plugin.edu.sc.seis:macAppBundle:2.2.1"
+    }
+}
+
+apply plugin: "edu.sc.seis.macAppBundle"
+
+macAppBundle {
+    bundleJRE = true
+    mainClassName = "com.butilov.mathmodel.FXApplication"
+    appName = "Math Model"
+    icon = "icon.icns"
+    volumeName = "Install Math Model"
+//    backgroundImage = "background.png"
+//    backgroundImageWidth = "375";
+//    backgroundImageHeight = "750";
+//    appFolderX = "360"
+//    appFolderY = "205";
+//    javaProperties.put("apple.laf.useScreenMenuBar", "true")
+}
+
 sourceCompatibility = 1.8
 
 repositories {
